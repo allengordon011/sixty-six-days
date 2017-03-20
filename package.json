@@ -1,7 +1,7 @@
 {
-  "name": "thinkful-full-stack-template",
+  "name": "sixty-six-days",
   "version": "0.0.1",
-  "description": "A full-stack template for Thinkful students",
+  "description": "A template for developing and deploying full stack JavaScript apps",
   "main": "index.js",
   "main:server": "server/index.js",
   "main:client": "client/js/index.js",
@@ -61,8 +61,15 @@
     "clean:client:production:assets": "rm -rf build/production/client/assets",
     "build:client:production:assets": "run-s clean:client:production:assets && cp -r client/assets build/production/client"
   },
-  "author": "Joe Turner <joe@oampo.co.uk>",
+  "contributors": [
+      "Allen Gordon",
+      "Jamie Davella"
+  ],
   "license": "UNLICENSED",
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/trig010/sixty-six-days.git"
+    },
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-loader": "^6.2.4",

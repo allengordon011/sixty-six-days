@@ -30,23 +30,6 @@ app.get('/api/home', (request, response) => {
   })
 })
 
-function runServer() {
-    return new Promise((resolve, reject) => {
-      mongoose.connect(DATABASE_URL, err => {
-          if (err) {
-          return reject(err);
-   }
-      app.listen(PORT, HOST, (err) => {
-          if (err) {
-              console.error(err);
-              reject(err);
-            }
-          const host = HOST || 'localhost';
-          console.log(`Listening on ${host}:${PORT}`);
-        });
-    });
-})}
-
 app.post('/api/home', function(req, res) {
 // in future will have to find individual user and then add goal
   let goal = new Goals()
@@ -129,6 +112,7 @@ app.delete('/api/home/:id', (req, res) => {
 })
 
 app.get('/api/home/stickers', (req, res) => {
+
   Stickers.find({})
   .then((stickers) => {
     return res.status(200).json(stickers);
@@ -139,6 +123,22 @@ app.get('/api/home/stickers', (req, res) => {
   })
 })
 
+function runServer() {
+    return new Promise((resolve, reject) => {
+      mongoose.connect(DATABASE_URL, err => {
+          if (err) {
+          return reject(err);
+   }
+      app.listen(PORT, HOST, (err) => {
+          if (err) {
+              console.error(err);
+              reject(err);
+            }
+          const host = HOST || 'localhost';
+          console.log(`Listening on ${host}:${PORT}`);
+        });
+    });
+})}
 
 if (require.main === module) {
     runServer();

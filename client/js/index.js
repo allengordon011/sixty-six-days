@@ -8,7 +8,7 @@ import Page from './components/pageContainer';
 
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
-// console.log(store.getState());
+console.log('store: ', store.getState());
 
 document.addEventListener('DOMContentLoaded', () => {
   return ReactDOM.render(

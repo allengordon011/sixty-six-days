@@ -1,6 +1,6 @@
 # Sixty-Six Days
 
-A template for developing and deploying full stack JavaScript apps.  Supports ES2015 on the client and server-side.
+An app intended to be used to let users set goals, and to help them create new, good habits.
 
 ![screenshot](/Sixty-Six-Days_ScreenShot.png?raw=true "Sixty-Six Days")
 
