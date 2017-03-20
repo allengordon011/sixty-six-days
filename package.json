@@ -8,7 +8,7 @@
   "scripts": {
     "start": "[ \"$NODE_ENV\" = \"production\" ] && npm run serve:server:production || npm run serve:server:dev",
     "dev": "run-p watch serve:server:dev",
-    "test": "mocha --recursive",
+    "test": "mocha --recursive --require babel-polyfill --compilers js:babel-register",
     "repl": "babel-node",
     "build": "run-s build:*",
     "clean": "rm -rf build",
@@ -62,14 +62,14 @@
     "build:client:production:assets": "run-s clean:client:production:assets && cp -r client/assets build/production/client"
   },
   "contributors": [
-      "Allen Gordon",
-      "Jamie Davella"
+    "Allen Gordon",
+    "Jamie Davella"
   ],
   "license": "UNLICENSED",
   "repository": {
-  "type": "git",
-  "url": "https://github.com/trig010/sixty-six-days.git"
-    },
+    "type": "git",
+    "url": "https://github.com/trig010/sixty-six-days.git"
+  },
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-loader": "^6.2.4",
@@ -77,6 +77,8 @@
     "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.13.1",
     "babel-preset-react": "^6.11.1",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "chokidar-cli": "^1.2.0",
     "clean-css": "^3.4.19",
     "json": "^9.0.4",
@@ -99,5 +101,5 @@
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0"
-  }
+    }
 }
