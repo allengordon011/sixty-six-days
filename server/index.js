@@ -30,7 +30,7 @@ app.get('/api/home', (request, response) => {
     response.status(500).json({message: 'internal server error'})
   })
 })
-
+ 
 app.post('/api/home', function(req, res) {
 
   let goal = new Goal()
