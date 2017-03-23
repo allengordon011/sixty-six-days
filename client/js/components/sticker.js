@@ -60,42 +60,43 @@ const quotes = [
   '-Scott Reed'
 ];
 
-const randomize = Math.floor(Math.random()*4);
-// console.log(images[randomize]);
 
-export class Sticker extends React.Component {
 
-  render() {
-
-    const completedSticker = this.props.userGoals.map((goal, idx) => {
-      const randomize = Math.floor(Math.random()*4);
-      if(goal.completed){
-        return (
-          <div>
-            <img height={120} className='sticker' key={idx} src={images[randomize]} />
-            <p className="quote">{feedback[randomize]}</p>
-          </div>
-        )
-      }
-      //
-
-    })
+class Sticker extends React.Component {
+    // componentDidMount(){
+    // }
+      render() {
+          const completedSticker = <div>COMPLETED GOAL STICKER</div>
+    //       this.props.goals.map((goal, i) => {
+    //       console.log('goal completed?: ', goal.completed)
+    //       const randomize4 = Math.floor(Math.random()*4);
+    //         if(goal.completed === true){
+    //             console.log('Goal completed!')
+    //             // fetchGiphy();
+    //           return (
+    //             <div key={i}>
+    //               <img height={120} className='sticker' src={this.props.stickers} />
+    //               <p className="quote">{feedback[randomize25]}</p>
+    //             </div>
+    //           )
+    //         }
+    //   })
 
     return (
       <div className="sticker-container">
-        <img height={120} className='sticker' src={images[4]} />
+        {/* <img height={120} className='sticker' src={images[4]} />
         <p className="quote">{feedback[0]}</p>
         <img height={120} className='sticker' src={images[1]} />
         <p className="quote">{feedback[1]}</p>
-        <img height={120} className='sticker' src={images[3]} />
-        <p className="quote">{feedback[2]}</p>
-        {completedSticker}
+        <img height={120} className='sticker' src={images[3]} /> */}
+        {/* <p className="quote">{feedback[2]}</p> */}
+        <ul><li>{completedSticker}</li></ul>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, props) => ({userGoals: state.goals})
+const mapStateToProps = (state, props) => ({goals: state.goals, stickers: state.stickers})
 
 export default connect(mapStateToProps)(Sticker)
 

@@ -4,16 +4,16 @@
 
 .jumbotron {
   background-color: FOAD4E;
-  width: 85%;
+  // width: 85%;
   padding-left: 10px;
   margin-left: 0px;
 }
 
-.jumbotron p {
-    margin: 5px;
-    font-size: 12px;
-    width: 50%;
-}
+// .jumbotron p {
+//     margin: 5px;
+//     font-size: 12px;
+//     width: 50%;
+// }
 
 .navBar {
     display: flex;
@@ -25,7 +25,7 @@
 }
 
 .container {
-    width: 500px;
+    // width: 500px;
     margin-top: 10px;
     padding-left: 0;
 }
@@ -41,7 +41,7 @@ h2 {
 }
 
 .quotes {
-    width: 40%;
+    // width: 40%;
     text-align: right;
     font-size: 11px;
     font-style: italic;
@@ -61,24 +61,24 @@ h2 {
     width: 100px;
 }
 
-.goalBox {
+.goal-box {
     display: flex;
     border: 1px solid grey;
     margin: 2px;
-    width: 75%;
+    // width: 75%;
     margin-left: 0;
     flex-direction: row;
     padding: 10px;
 }
 
-.goalText {
-    width: 50%;
+.goal-text {
+    // width: 50%;
     vertical-align: bottom;
 }
 
-.goalsContainer {
+.goals-container {
     display: flex;
-    width: 100%;
+    // width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 30px 0;
@@ -97,12 +97,16 @@ h2 {
     display: block;
 }
 
-.addToCalendar {
-    font-size: 12px;
+ul {
+    list-style: none;
 }
 
 .btn-xs {
     margin-right: 5px;
+}
+
+header {
+    margin-top: 15px;
 }
 
 footer {

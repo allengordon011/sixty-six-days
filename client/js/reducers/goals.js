@@ -1,41 +1,42 @@
 import * as actions from '../actions/actions';
 
-const initialState = {
-  goals: [],
-  completed: false,
-  // users: [],
-  loading: false,
-  error: null
-};
+// const initialState = {
+//   goal: [],
+//   completed: false,
+//   difficulty: 0,
+//   sticker: [],
+// };
 
-export const GoalsReducer = (state=initialState, action) => {
+//a reducer takes in two things:
+
+// 1. the action (info about what happened)
+// 2. copy of current state
+
+const goals = (state=[], action) => {
   // console.log(state);
   if (action.type === actions.FETCH_REQUEST) {
+      console.log('Fetch request')
     return {...state,
-      loading: true
     }
   }
   if (action.type === actions.FETCH_GOALS_SUCCESS) {
+      console.log('Fetch goals sucess')
     return {...state,
-      goals: action.goals,
-      completed: action.completed,
-      loading: false,
-      error: null
+      goals: action.goals
+    //   completed: action.completed,
     }
   }
   if (action.type === actions.FETCH_ERROR) {
     return {...state,
-      loading: false,
-      goal: action.error,
-      error: null
+      goals: action.error,
     }
   }
   if (action.type === actions.FETCH_STICKERS_SUCCESS) {
     return {...state,
       stickers: action.stickers,
-      loading: false,
-      error: null
     }
   }
   return state;
 }
+
+export default goals;
