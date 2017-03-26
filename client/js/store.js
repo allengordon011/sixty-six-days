@@ -14,8 +14,10 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer,   composeEnhancers(applyMiddleware(thunk)));
 //defaultState,
 
-store.dispatch(actions.fetchGoals()).then(() =>
-  console.log(store.getState())
-)
+// store.dispatch(actions.fetchGoals())
+// store.dispatch(actions.fetchSticker())
+
+// console.log(store.getState())
+
 
 export default store;

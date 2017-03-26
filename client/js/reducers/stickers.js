@@ -1,18 +1,39 @@
 import * as actions from '../actions/actions';
-import 'isomorphic-fetch'
 
-const sticker = (state=[], action) => {
+const initialState = {
+  stickers: []
+};
+
+const stickers = (state=initialState, action) => {
         switch(action.type) {
-          case 'FETCH_STICKER_SUCCESS' :
-            const i = action.index;
-            return [
-              ...state.slice(0,i), // before the one we are updating
-              {...state[i], sticker: state[i].sticker + 1},
-              ...state.slice(i + 1), // after the one we are updating
-            ]
-        default:
-            return state;
+            case actions.FETCH_STICKERS_REQUEST: {
+              console.log('Fetch stickers request');
+              // const i = action.index;
+              return state
+            //     ...state
+                  }
+
+            case actions.FETCH_STICKERS_SUCCESS: {
+                console.log('Fetch stickers success');
+                // const i = action.index;
+                return {
+                    ...state,
+                  stickers: action.stickers
+              }
+                    }
+
+            case actions.FETCH_ERROR: {
+                console.log('Fetch error!');
+                return {
+                    ...state,
+                  stickers: action.error
+              }
+
+                // break; //?
+            }
+            default:
+                return state;
         }
     }
 
-export default sticker;
+export default stickers;

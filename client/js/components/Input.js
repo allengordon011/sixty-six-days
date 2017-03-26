@@ -5,14 +5,15 @@ import * as actions from '../actions/actions';
 class Input extends React.Component {
     constructor(props) {
         super(props);
-        this.sendUserGoal = this.sendUserGoal.bind(this);
+        this.postGoal = this.postGoal.bind(this);
         // this.saveUserGoal = this.saveUserGoal.bind(this);
     }
-    sendUserGoal(event) {
+    postGoal(event) {
         event.preventDefault();
-        const userGoal = this.textInput.value;
-        console.log('fired off sendUserGoal event', userGoal)
-        this.props.dispatch(actions.addGoal(userGoal))
+        console.log('this props ', this.props)
+        const goal = this.textInput.value;
+        console.log('fired off postGoal event', goal)
+        this.props.dispatch(actions.postGoal(goal))
         this.textInput.value = '';
     }
 
@@ -25,7 +26,7 @@ class Input extends React.Component {
   render() {
         return (
             <div className="container">
-                <form className="form-horizontal" onSubmit={this.sendUserGoal}>
+                <form className="form-horizontal" onSubmit={this.postGoal}>
                     <div className="form-group has-success has-feedback">
                         <label className="col-sm-2 control-label" htmlFor="inputSuccess">New Goal</label>
                         <div className="col-sm-6">
@@ -38,4 +39,6 @@ class Input extends React.Component {
     }
 }
 
-export default Input
+const mapStateToProps = (state, props) => ({goals: state.goals})
+
+export default connect(mapStateToProps)(Input)

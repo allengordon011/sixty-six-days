@@ -20,6 +20,7 @@ app.use(express.static(process.env.CLIENT_PATH));
 // app.use(express.static(path.join(__dirname, '../client'))); //required for tests
 app.use(jsonParser);
 
+//fetch goals from db
 app.get('/api/home', (request, response) => {
   Goal.find({})
   .then((goals) => {
@@ -30,7 +31,8 @@ app.get('/api/home', (request, response) => {
     response.status(500).json({message: 'internal server error'})
   })
 })
- 
+
+//post a goal to db
 app.post('/api/home', function(req, res) {
 
   let goal = new Goal()
@@ -53,6 +55,7 @@ app.post('/api/home', function(req, res) {
   })
 })
 
+//change a goal
 app.put('/api/home/:id', (req, res) => {
   // console.log(req.body)
   Goal.findOneAndUpdate(
@@ -74,6 +77,7 @@ app.put('/api/home/:id', (req, res) => {
   );
 });
 
+//change a goal status to completed
 app.put('/api/home/completed/:id', (req, res) => {
 
   Goal.findOne({_id: req.params.id}, function(err,obj) {
@@ -112,26 +116,30 @@ app.delete('/api/home/:id', (req, res) => {
   );
 })
 
-app.get('/api/home/stickers', (req, res) => {
-
-    let giphys = () => {
-        fetch('http://api.giphy.com/v1/gifs/search?q=success&api_key=dc6zaTOxFJmzC', {
-    	method: 'get'
-        }).then(response => response.json()
-        ).then(x => {
-            let stickers;
-            let y = x.data;
-            stickers = y.map(gif => gif.images.fixed_height.url);
-            const randomize25 = Math.floor(Math.random()*25);
-            return stickers;
-        }).catch(err =>
-        	console.error(err)
-        );
-    }
-})
+// app.get('/api/home/stickers', (req, res) => {
+//
+//     let giphys = () => {
+//         fetch('http://api.giphy.com/v1/gifs/search?q=success&api_key=dc6zaTOxFJmzC', {
+//     	method: 'get'
+//     }).then(response => console.log('RESONE ', response))
+//         //     response.json()
+//         // ).then(x => {
+//         //     console.log('x: ', x)
+//             // let stickers;
+//             // let y = x.data;
+//             // stickers = y.map(gif => gif.images.fixed_height.url);
+//             // const randomize25 = Math.floor(Math.random()*25);
+//             // console.log('sticker urls fetched: ', stickers)
+//             // return stickers;
+//         // })
+//         .catch(err =>
+//         	console.error(err)
+//         );
+//     }
+// })
 
 app.post('/api/home/stickers', function(req, res) {
-  console.log(req.body);
+  console.log('stickers post req body: ', req.body);
     //   goal.goal = req.body.goal
     //   goal.completed = false
       //

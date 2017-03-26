@@ -1,6 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux';
-
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
 
 const images = [
   'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT0hCinHGYyY6xo2azGQVC2udeCPFWcvCSnDteoJ15ifC3qcNOu',
@@ -62,11 +62,23 @@ const quotes = [
 
 
 
-class Sticker extends React.Component {
-    // componentDidMount(){
-    // }
-      render() {
-          const completedSticker = <div>COMPLETED GOAL STICKER</div>
+class Stickers extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount(){
+        console.log('MOUNTED')
+        this.props.dispatch(actions.fetchStickers())
+    }
+  render() {
+      console.log('Sticker props', this.props)
+    //   const completedSticker =       this.props.stickers.map((sticker, i) => (
+    //     <div key={i}>
+    //         {sticker}
+    //     </div>
+    // ));
+
+    //       console.log('goal completed?: ', goal.completed))}
     //       this.props.goals.map((goal, i) => {
     //       console.log('goal completed?: ', goal.completed)
     //       const randomize4 = Math.floor(Math.random()*4);
@@ -79,27 +91,23 @@ class Sticker extends React.Component {
     //               <p className="quote">{feedback[randomize25]}</p>
     //             </div>
     //           )
-    //         }
+            // }
     //   })
 
     return (
-      <div className="sticker-container">
+      <div className="sticker-container">This is where stickers go!
         {/* <img height={120} className='sticker' src={images[4]} />
         <p className="quote">{feedback[0]}</p>
         <img height={120} className='sticker' src={images[1]} />
         <p className="quote">{feedback[1]}</p>
         <img height={120} className='sticker' src={images[3]} /> */}
         {/* <p className="quote">{feedback[2]}</p> */}
-        <ul><li>{completedSticker}</li></ul>
+        {/* <ul><li>{completedSticker}</li></ul> */}
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, props) => ({goals: state.goals, stickers: state.stickers})
+const mapStateToProps = (state, props) => ({stickers: state.stickers})
 
-export default connect(mapStateToProps)(Sticker)
-
-//eventually make this pull from users the array of images and
-// quotes that user has earned. This will mapStateToProps and pull
-// from the user collection
+export default connect(mapStateToProps)(Stickers);

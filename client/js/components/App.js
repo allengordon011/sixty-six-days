@@ -1,7 +1,7 @@
 import React from 'react';
 import Goals from './Goals';
 import Input from './Input';
-import Sticker from './Sticker';
+import Stickers from './Stickers';
 import NavBar from './NavBar';
 
 function App() {
@@ -18,9 +18,9 @@ function App() {
             <h3>Your Goals</h3>
             <Goals/>
 
-            <div className="jumbotron">
+            <div>
                 <h3>Stickers Earned</h3>
-                <Sticker/>
+                <Stickers />
             </div>
 
             <footer>
