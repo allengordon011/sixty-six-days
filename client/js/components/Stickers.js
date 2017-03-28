@@ -18,9 +18,9 @@ class Stickers extends React.Component {
     constructor(props) {
         super(props);
     }
-    componentWillMount(){
-        this.props.dispatch(actions.fetchStickers())
-    }
+    // componentWillMount(){
+    //     this.props.dispatch(actions.fetchStickers())
+    // }
   render() {
       console.log('Sticker props', this.props)
     //   const completedSticker =

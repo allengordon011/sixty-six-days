@@ -7,49 +7,68 @@ import Calendar from './Calendar';
 class GoalsList extends React.Component {
     constructor(props) {
         super(props);
+        // this.props.onSuccessClick = this.props.onSuccessClick.bind();
     }
+
+    // let onSuccessClick = (event) => {
+    //
+    //     event.preventDefault();
+    //     console.log('clicked goal: ', goal)
+    //     $('div').closest('.feedback').show()
+    //     // this.props.dispatch(actions.updateCompletedGoal(goal._id))
+    // }
 
     render() {
         let goalsArray = this.props.goals.goals;
-        $('button.btn-success').on('click', function() {
-        $('div.feedback').closest().show().html("<div> HI </div>")
-    }); //??
+        // $('button').on('click', '.btn-success', function(event) {
+        //     console.log('clicked: ', $(this))
+        //     // event.stopPropagation();
+        //     $('div').closest('.feedback').show()
+        // }); //??
+        let randomize25 = Math.floor(Math.random()*25);
+        let stickersArray = this.props.stickers.stickers;
+        let sticker = stickersArray.length <= 1 ? "" : stickersArray[randomize25].sticker
 
         const goalsList = goalsArray.length === 0
             ? "Loading..."
             : goalsArray.map((goal, i) => {
                 let strikeThru = goal.completed ? "strikeThru" : "";
+                let randomize25 = Math.floor(Math.random()*25);
+                let stickersArray = this.props.stickers.stickers;
+                let sticker = stickersArray.length <= 1 ? "" : stickersArray[randomize25].sticker
 
                 return (
-                    <div>
-                <div className="goal-box" id={i} key={i}>
-                    <div className={`goal-text ${strikeThru}`} onBlur={(event) => this.props.dispatch(actions.updateGoal(event.target.innerText, goal._id))} contentEditable='true'>{goal.goal}
-                    </div>
-                    <button className="btn-xs btn-success" onClick={() => {
-                        this.props.dispatch(actions.updateCompletedGoal(goal._id))
-                        const randomize25 = Math.floor(Math.random()*25);
-                        console.log(this.props.stickers.stickers[randomize25].sticker)
+                    <div className="goal-container" key={i}>
+                        <div className="goal-box" id={i}>
+                            <div className={`goal-text ${strikeThru}`} onBlur={(event) => this.props.dispatch(actions.updateGoal(event.target.innerText, goal._id))} contentEditable='true'>{goal.goal}
+                            </div>
 
-                            // <img src=`{this.props.stickers.stickers[randomize25].sticker}` />)
-                    }}>
-                        Done!</button>
-                    <button className="btn-xs btn-warning" onClick={() => {
-                        this.props.dispatch(actions.deleteGoal(goal._id))
-                    }}>
-                        Delete</button>
-
-                </div>
-                    <div className="calendar">
-                        <Calendar goal={goal.goal}/>
+                            <button className="done" onClick={
+                                () => {    
+                                this.props.dispatch(actions.updateCompletedGoal(goal._id))
+                            }
+                        }>
+                                Done!</button>
+                            <button className="delete" onClick={() => {
+                                this.props.dispatch(actions.deleteGoal(goal._id))
+                            }}>
+                                Delete</button>
+                                {/* <img src={sticker} /> */}
+                        </div>
+                            <div className="calendar">
+                                <Calendar goal={goal.goal}/>
+                            </div>
+                            <div className="feedback">GIF HERE
+                                <img src={sticker} />
+                            </div>
                     </div>
-                    <div className="feedback"></div>
-                </div>
             )
         })
 
         return (
             <div>
                 {goalsList}
+
             </div>
         )
     }

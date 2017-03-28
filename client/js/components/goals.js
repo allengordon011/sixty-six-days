@@ -11,6 +11,7 @@ class Goals extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(actions.fetchGoals());
+        this.props.dispatch(actions.fetchStickers())
     }
 
     render() {

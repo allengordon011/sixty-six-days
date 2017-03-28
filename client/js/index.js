@@ -1,22 +1,16 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux';
 
 //import react router deps
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { hashHistory, browserHistory } from 'react-router-dom';
+import { Switch } from 'react-router';
 
-import store from './store'
-import App from './components/app';
-
-
-// const router = (
-//     <Provider store={store}>
-
-//     </Provider>
-// );
-//
-// render(router, document.getElementById('root'));
+import store from './store';
+import App from './components/App';
+import Splash from './components/Splash';
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
 // console.log('store: ', store.getState());
@@ -25,9 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
   return ReactDOM.render(
     <Provider store={store}>
         <Router>
-            <Route path="/" component={App}>
-                {/* <Route path="/view/:postId" component={Single}></Route> */}
-            </Route>
+            <Switch>
+                <Route exact path="/" component={Splash} />
+                <Route path="/main" component={App} />
+            </Switch>
         </Router>
     </Provider>,
     document.getElementById('app')
