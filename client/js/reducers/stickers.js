@@ -1,7 +1,10 @@
 import * as actions from '../actions/actions';
 
 const initialState = {
-  stickers: []
+  stickers: [{
+      sticker: '',
+      earned: false
+    }]
 };
 
 const stickers = (state=initialState, action) => {
@@ -15,7 +18,6 @@ const stickers = (state=initialState, action) => {
 
             case actions.FETCH_STICKERS_SUCCESS: {
                 console.log('Fetch stickers success');
-                // const i = action.index;
                 return {
                     ...state,
                   stickers: action.stickers
@@ -29,7 +31,6 @@ const stickers = (state=initialState, action) => {
                   stickers: action.error
               }
 
-                // break; //?
             }
             default:
                 return state;

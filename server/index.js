@@ -126,9 +126,7 @@ app.delete('/api/home/:id', (req, res) => {
 //         // ).then(x => {
 //         //     console.log('x: ', x)
 //             // let stickers;
-//             // let y = x.data;
-//             // stickers = y.map(gif => gif.images.fixed_height.url);
-//             // const randomize25 = Math.floor(Math.random()*25);
+
 //             // console.log('sticker urls fetched: ', stickers)
 //             // return stickers;
 //         // })
@@ -138,24 +136,24 @@ app.delete('/api/home/:id', (req, res) => {
 //     }
 // })
 
-app.post('/api/home/stickers', function(req, res) {
-  console.log('stickers post req body: ', req.body);
-    //   goal.goal = req.body.goal
-    //   goal.completed = false
-      //
-    //   goal.save((err, goal) => {
-    //       if(err){
-    //           res.send(err)
-    //       }
-      //
-    //       Goal.find({}, (err, goal) => {
-    //           if(err){
-    //               res.send(err)
-    //           }
-    //           res.json(goal)
-    //       })
-    //   })
-})
+// app.post('/api/home/stickers', function(req, res) {
+//   console.log('stickers post req body: ', req.body);
+//     //   goal.goal = req.body.goal
+//     //   goal.completed = false
+//       //
+//     //   goal.save((err, goal) => {
+//     //       if(err){
+//     //           res.send(err)
+//     //       }
+//       //
+//     //       Goal.find({}, (err, goal) => {
+//     //           if(err){
+//     //               res.send(err)
+//     //           }
+//     //           res.json(goal)
+//     //       })
+//     //   })
+// })
 
 let server;
 

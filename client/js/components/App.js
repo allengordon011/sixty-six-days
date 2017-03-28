@@ -16,7 +16,7 @@ function App() {
             <Input />
             <hr></hr>
             <h3>Your Goals</h3>
-            <Goals/>
+            <Goals />
 
             <div>
                 <h3>Stickers Earned</h3>

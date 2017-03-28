@@ -29,7 +29,6 @@ export const FETCH_STICKERS_SUCCESS = 'FETCH_STICKERS_SUCCESS';
 export const fetchStickersSuccess = stickers => ({
   type: FETCH_STICKERS_SUCCESS,
   stickers
-  // index
 })
 
 
@@ -80,23 +79,25 @@ export const updateGoal = (goal, id) => dispatch => {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      goal
-    })
-  })
-  .then(json => dispatch(fetchGoalsSuccess(json))
-    ).catch(err => console.error(err))
+        },
+        body: JSON.stringify({
+        goal
+        })
+      })
+    //   .then(json => dispatch(fetchGoalsSuccess(json))
+    // )
+    .catch(err => console.error(err))
 }
 
 export const updateCompletedGoal = (id) => dispatch => {
   return fetch(url + "/completed/" + id, {
-    method: 'PUT'
-  })
-  .then(() => dispatch(fetchGoals())
-  // .then((response) => response.json())
-  // .then((json) => dispatch(fetchGoalsSuccess(json))
-    ).catch(err => console.error(err))
+      method: 'PUT'
+      })
+      .then(() => dispatch(fetchGoals())
+      // .then((response) => response.json())
+      // .then((json) => dispatch(fetchGoalsSuccess(json))
+    )
+    .catch(err => console.error(err))
 }
 
 export const fetchStickers = () => dispatch => {
@@ -104,71 +105,31 @@ export const fetchStickers = () => dispatch => {
 
     fetch('http://api.giphy.com/v1/gifs/search?q=success&api_key=dc6zaTOxFJmzC', {
     method: 'get'
-    }).then(response => response.json()
-    ).then(json => {
-        console.log('FETCH RES JSON: ', json)
-        // let y = json.data;
-        // let gifs = y.map(gif => gif.images.fixed_height.url);
+    })
+    .then(response => response.json())
+    .then(json => {
+        let y = json.data;
+        let gifs = y.map(gif => {return ({sticker: gif.images.fixed_height.url, earned: false})});
         // const randomize25 = Math.floor(Math.random()*25);
         // let gif = gifs[randomize25]
         // return gif})
-        // .then(dispatch(postSticker(gif))
+        dispatch(fetchStickersSuccess(gifs))
     })
     .catch(err => console.error(err))
 }
 
-  //   fetch(url + '/stickers')
-  //   // .then(dispatch(fetchStickersRequest()))
-  //   .then(response => {
-  //     if (!response.ok) {
-  //       const error = new Error(response.statusText)
-  //       error.response = response
-  //       throw error;
-  //     }
-  //     console.log('Fetch stickers reponse: ', response)
-  //     return response;
-  //   })
-  //   .then(response => response.json())
-  //   .then(json =>
-  //       dispatch(fetchStickersSuccess(json))
-  //   )
-  //   .catch(error =>
-  //       dispatch(fetchError(error))
-  //   );
-  // };
-
-export const postSticker = (sticker) => dispatch => {
-  return fetch(url + '/stickers', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      sticker
-    })
-  })
-  .then(response => response.json())
-  // .then(json => dispatch(fetchStickerSuccess(json)))
-  .catch(err => console.error(err))
-}
-
-
-// export const fetchStickers = () => dispatch => {
-//   return fetch(url + "/stickers/")
-//   .then(dispatch(fetchRequest()))
-//   .then(response => {
-//     if (!response.ok) {
-//       const error = new Error(response.statusText)
-//       error.response = response
-//       throw error;
-//     }
-//     return response;
+// export const postSticker = (sticker) => dispatch => {
+//   return fetch(url + '/stickers', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       sticker
+//     })
 //   })
 //   .then(response => response.json())
-//   .then(stickerData =>
-//   dispatch(fetchStickerSuccess(stickerData))
-//   )
-//   .catch(error =>
-//     dispatch(fetchError(error))
-//   );
-// };
+//   // .then(json => dispatch(fetchStickerSuccess(json)))
+//   .catch(err => console.error(err))
+// }
+//

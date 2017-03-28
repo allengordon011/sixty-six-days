@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
-import Calendar from './Calendar';
 
-import List from './List';
+import GoalsList from './GoalsList';
 
 class Goals extends React.Component {
     constructor(props) {
@@ -18,7 +17,8 @@ class Goals extends React.Component {
 
         return (
             <div className="goals-container">
-                <List/>
+
+                <GoalsList />
             </div>
             )
         }
