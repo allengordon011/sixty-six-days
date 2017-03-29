@@ -14,7 +14,7 @@ const stickers = (state=initialState, action) => {
               // const i = action.index;
               return state
             //     ...state
-                  }
+            }
 
             case actions.FETCH_STICKERS_SUCCESS: {
                 console.log('Fetch stickers success');
@@ -22,7 +22,15 @@ const stickers = (state=initialState, action) => {
                     ...state,
                   stickers: action.stickers
               }
-                    }
+            }
+
+            case actions.EARN_STICKER: {
+                console.log('Sticker earned!', action.sticker);
+                return {
+                    ...state,
+                  stickers: action.sticker
+              }
+            }
 
             case actions.FETCH_ERROR: {
                 console.log('Fetch error!');
@@ -30,8 +38,8 @@ const stickers = (state=initialState, action) => {
                     ...state,
                   stickers: action.error
               }
-
             }
+
             default:
                 return state;
         }

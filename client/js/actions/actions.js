@@ -31,6 +31,12 @@ export const fetchStickersSuccess = stickers => ({
   stickers
 })
 
+export const EARN_STICKER = 'EARN_STICKER';
+export const earnSticker = sticker => ({
+  type: EARN_STICKER,
+  sticker
+})
+
 
 export const fetchGoals = () => dispatch => {
   return fetch(url)
@@ -66,7 +72,6 @@ export const postGoal = (goal) => dispatch => {
   .then(json => dispatch(fetchGoalsSuccess(json)))
 }
 
-//when click button it sends id to this action
 export const deleteGoal = (id) => dispatch => {
   return fetch(url + "/" + id, {
     method: 'DELETE'
@@ -110,26 +115,7 @@ export const fetchStickers = () => dispatch => {
     .then(json => {
         let y = json.data;
         let gifs = y.map(gif => {return ({sticker: gif.images.fixed_height.url, earned: false})});
-        // const randomize25 = Math.floor(Math.random()*25);
-        // let gif = gifs[randomize25]
-        // return gif})
         dispatch(fetchStickersSuccess(gifs))
     })
     .catch(err => console.error(err))
 }
-
-// export const postSticker = (sticker) => dispatch => {
-//   return fetch(url + '/stickers', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       sticker
-//     })
-//   })
-//   .then(response => response.json())
-//   // .then(json => dispatch(fetchStickerSuccess(json)))
-//   .catch(err => console.error(err))
-// }
-//

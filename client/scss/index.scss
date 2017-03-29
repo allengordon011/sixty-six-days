@@ -5,27 +5,56 @@
 .container {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin: 0 auto;
     padding-left: 10px;
+    max-width: 900px;
+}
+
+.splash-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
 }
 
 .wrapper {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .main {
   // background-color: FOAD4E;
-  background-color: aqua;
-  flex: 3;
-  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .stickers-sidebar {
-    // padding-right: 10px;
-    background-color: yellow;
+    display: flex;
+    flex-direction: column;
     flex: 1;
-    margin-right: 30px;
+    border: 1px solid #a2a2a2;
+    padding: 20px;
+    max-width: 250px;
+    min-height: 350px;
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main {
+        margin-left: 0;
+        margin-bottom: 60px;
+    }
 }
 
 .navBar {
@@ -38,97 +67,6 @@
 }
 
 
-h1,
-h2 {
-    font-family: 'Teko', sans-serif;
-}
-
-h2 {
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-input {
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px auto 5px auto;
-    // margin-bottom: 5px;
-}
-
-.quotes {
-    // width: 40%;
-    text-align: right;
-    font-size: 11px;
-    font-style: italic;
-}
-
-.quote {
-  font-size: 11px;
-}
-
-.calendar {
-    font-size: 10px;
-    color: grey;
-}
-
-.col-sm-2 control-label {
-    text-align: left;
-    width: 100px;
-}
-
-.goal-box {
-    display: flex;
-    border: 1px solid grey;
-    margin: 2px;
-    // width: 75%;
-    margin-left: 0;
-    flex-direction: row;
-    padding: 10px;
-}
-
-.goal-text {
-    // width: 50%;
-    vertical-align: bottom;
-}
-
-.goals-container {
-    display: flex;
-    // width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 30px 0;
-}
-
-.sticker {
-    background-color: white;
-    border: 1px solid black;
-    margin-left: 0px;
-    margin-bottom: 2px;
-    margin-right: 10px;
-    margin-top: 5px;
-}
-
-.sticker-container {
-    display: block;
-}
-
-ul {
-    list-style: none;
-}
-
-button {
-    // margin-right: 5px;
-    margin-left: 5px;
-}
-
-.done {
-    color: green;
-}
-
-.delete {
-    color: darkred;
-}
-
 header {
     margin-top: 15px;
 }
@@ -137,6 +75,123 @@ footer {
     text-align: center;
     font-size: 12px;
     margin-bottom: 20px;
+}
+
+h1,
+h2 {
+    font-family: 'Teko', sans-serif;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 5em;
+}
+
+.subtitle {
+    font-size: 2em;
+    margin: 0 auto;
+}
+
+.main-title {
+    font-size: 2em;
+}
+
+.main-subtitle {
+    font-size: 1em;
+}
+
+input {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px auto 5px auto;
+    text-align: center;
+    min-width: 300px;
+    // margin-bottom: 5px;
+}
+
+.goals-container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 0 25px;
+}
+
+.goal-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+    text-align: center;
+}
+
+.goal-box {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    border: 1px solid grey;
+    margin: 0;
+    padding: 10px;
+}
+
+.goal-text {
+    // width: 50%;
+    vertical-align: bottom;
+}
+
+.calendar {
+    font-size: 10px;
+    color: grey;
+    text-align: left;
+    margin: 7px;
+}
+
+.sticker {
+    background-color: white;
+    border: 1px solid black;
+    margin: 0 7px;
+}
+
+.sticker-container {
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    border-radius: 5px;
+}
+
+.buttons-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.done {
+    color: white;
+    background-color: green;
+    margin-left: 1em;
+}
+
+.delete {
+    color: white;
+    background-color: red;
+    margin-left: 1em;
+}
+
+.enter {
+    height: 50px;
+    width: 150px;
+    margin-top: 15px;
+    align-self: center;
+    font-size: 16px;
+    color: darkgrey;
 }
 
 .feedback {

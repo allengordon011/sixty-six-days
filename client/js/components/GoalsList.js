@@ -25,9 +25,9 @@ class GoalsList extends React.Component {
         //     // event.stopPropagation();
         //     $('div').closest('.feedback').show()
         // }); //??
-        let randomize25 = Math.floor(Math.random()*25);
-        let stickersArray = this.props.stickers.stickers;
-        let sticker = stickersArray.length <= 1 ? "" : stickersArray[randomize25].sticker
+        // let randomize25 = Math.floor(Math.random()*25);
+        // let stickersArray = this.props.stickers.stickers;
+        // let sticker = stickersArray.length <= 1 ? "" : stickersArray[randomize25].sticker
 
         const goalsList = goalsArray.length === 0
             ? "Loading..."
@@ -42,25 +42,26 @@ class GoalsList extends React.Component {
                         <div className="goal-box" id={i}>
                             <div className={`goal-text ${strikeThru}`} onBlur={(event) => this.props.dispatch(actions.updateGoal(event.target.innerText, goal._id))} contentEditable='true'>{goal.goal}
                             </div>
-
-                            <button className="done" onClick={
-                                () => {    
-                                this.props.dispatch(actions.updateCompletedGoal(goal._id))
-                            }
-                        }>
-                                Done!</button>
-                            <button className="delete" onClick={() => {
-                                this.props.dispatch(actions.deleteGoal(goal._id))
-                            }}>
-                                Delete</button>
-                                {/* <img src={sticker} /> */}
+                            <section className="buttons-group">
+                                <button className="done" onClick={
+                                    () => {
+                                    this.props.dispatch(actions.updateCompletedGoal(goal._id));
+                                    sticker.earned = true;
+                                    this.props.dispatch(actions.earnSticker(sticker));
+                                }
+                            }>
+                                    Done!</button>
+                                <button className="delete" onClick={() => {
+                                    this.props.dispatch(actions.deleteGoal(goal._id))
+                                }}>
+                                    Delete</button>
+                                    {/* <img src={sticker} /> */}
+                            </section>
                         </div>
                             <div className="calendar">
                                 <Calendar goal={goal.goal}/>
                             </div>
-                            <div className="feedback">GIF HERE
-                                <img src={sticker} />
-                            </div>
+
                     </div>
             )
         })

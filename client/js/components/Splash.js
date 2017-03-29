@@ -5,8 +5,16 @@ function Splash() {
     return (
         <div>
             <div className="splash-container">
-                This is the SPLASH page!!!
-                <button><Link to="/main">click to enter</Link></button>
+                <div className="wrapper">
+                    <section className="main">
+                        <header>
+                            <h1 className="title">66 Days</h1>
+                            <h2 className="subtitle">Set goals, stick to them.</h2>
+                        </header>
+                        <hr></hr>
+                        <button className="enter"><Link to="/main">Click to Enter</Link></button>
+                    </section>
+                </div>
             </div>
         </div>
     )

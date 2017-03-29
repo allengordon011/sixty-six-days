@@ -9,19 +9,19 @@ function App() {
         <div className="container">
             <div className="wrapper">
 
-                <div className="main">
+                <section className="main">
                     <NavBar />
 
                     <header>
-                        <h1 className="title">66 Days</h1>
-                        <h2 className="subtitle">Set goals, stick to them.</h2>
+                        <h1 className="main-title">66 Days</h1>
+                        <h2 className="main-subtitle">Set goals, stick to them.</h2>
                     </header>
                     <hr></hr>
                     <Input />
                     <hr></hr>
                     <h3>Your Goals</h3>
                     <Goals />
-                </div>
+                </section>
                 <div className="stickers-sidebar">
                     <h3>Stickers Earned</h3>
                     <Stickers />
