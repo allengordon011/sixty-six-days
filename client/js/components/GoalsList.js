@@ -3,39 +3,28 @@ import {connect} from 'react-redux'
 import * as actions from '../actions/actions';
 import Calendar from './Calendar';
 
-
 class GoalsList extends React.Component {
     constructor(props) {
         super(props);
-        // this.props.onSuccessClick = this.props.onSuccessClick.bind();
     }
-
-    // let onSuccessClick = (event) => {
-    //
-    //     event.preventDefault();
-    //     console.log('clicked goal: ', goal)
-    //     $('div').closest('.feedback').show()
-    //     // this.props.dispatch(actions.updateCompletedGoal(goal._id))
-    // }
-
+    componentWillMount() {
+        this.props.dispatch(actions.fetchGoals());
+    }
     render() {
         let goalsArray = this.props.goals.goals;
-        // $('button').on('click', '.btn-success', function(event) {
-        //     console.log('clicked: ', $(this))
-        //     // event.stopPropagation();
-        //     $('div').closest('.feedback').show()
-        // }); //??
-        // let randomize25 = Math.floor(Math.random()*25);
-        // let stickersArray = this.props.stickers.stickers;
-        // let sticker = stickersArray.length <= 1 ? "" : stickersArray[randomize25].sticker
+        let sticker = {};
 
         const goalsList = goalsArray.length === 0
             ? "Loading..."
             : goalsArray.map((goal, i) => {
-                let strikeThru = goal.completed ? "strikeThru" : "";
-                let randomize25 = Math.floor(Math.random()*25);
+                let strikeThru = goal.completed
+                    ? "strikeThru"
+                    : "";
+                let randomize25 = Math.floor(Math.random() * 25);
                 let stickersArray = this.props.stickers.stickers;
-                let sticker = stickersArray.length <= 1 ? "" : stickersArray[randomize25].sticker
+                stickersArray.length <= 1
+                    ? null
+                    : sticker = stickersArray[randomize25]
 
                 return (
                     <div className="goal-container" key={i}>
@@ -43,28 +32,27 @@ class GoalsList extends React.Component {
                             <div className={`goal-text ${strikeThru}`} onBlur={(event) => this.props.dispatch(actions.updateGoal(event.target.innerText, goal._id))} contentEditable='true'>{goal.goal}
                             </div>
                             <section className="buttons-group">
-                                <button className="done" onClick={
-                                    () => {
+                                <button className="done" onClick={() => {
+                                    if (goal.completed === false) {
+                                        sticker.earned = true;
+                                        // stickersArray.push(sticker);
+                                        this.props.dispatch(actions.earnSticker(stickersArray));
+                                    };
                                     this.props.dispatch(actions.updateCompletedGoal(goal._id));
-                                    sticker.earned = true;
-                                    this.props.dispatch(actions.earnSticker(sticker));
-                                }
-                            }>
+                                }}>
                                     Done!</button>
                                 <button className="delete" onClick={() => {
                                     this.props.dispatch(actions.deleteGoal(goal._id))
                                 }}>
                                     Delete</button>
-                                    {/* <img src={sticker} /> */}
                             </section>
                         </div>
                             <div className="calendar">
-                                <Calendar goal={goal.goal}/>
+                                <Calendar goal={goal.goal} />
                             </div>
-
                     </div>
-            )
-        })
+                )
+            })
 
         return (
             <div>
@@ -77,13 +65,4 @@ class GoalsList extends React.Component {
 
 const mapStateToProps = (state, props) => ({goals: state.goals, stickers: state.stickers})
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     fetchGoals: (index) =>  {
-//       return dispatch(fetchGoals(index))
-//     }
-//   }
-// }
-
 export default connect(mapStateToProps)(GoalsList);
-//

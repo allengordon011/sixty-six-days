@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 
 //import react router deps
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import { hashHistory, browserHistory } from 'react-router-dom';
 import { Switch } from 'react-router';
 
 import store from './store';
@@ -13,7 +12,6 @@ import App from './components/App';
 import Splash from './components/Splash';
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
-// console.log('store: ', store.getState());
 
 document.addEventListener('DOMContentLoaded', () => {
   return ReactDOM.render(

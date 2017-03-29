@@ -8,17 +8,13 @@ class Goals extends React.Component {
     constructor(props) {
         super(props);
     }
-
     componentWillMount() {
         this.props.dispatch(actions.fetchGoals());
-        this.props.dispatch(actions.fetchStickers())
     }
-
     render() {
 
         return (
             <div className="goals-container">
-
                 <GoalsList />
             </div>
             )

@@ -36,28 +36,23 @@ app.get('/api/home', (request, response) => {
 app.post('/api/home', function(req, res) {
 
   let goal = new Goal()
-  // console.log(req.body);
       goal.goal = req.body.goal
-    //   goal.completed = false
-
       goal.save((err, goal) => {
           if(err){
               res.send(err)
           }
 
-      Goal.find({}, (err, goal) => {
+      Goal.find({}, (err, goals) => {
           if(err){
               res.send(err)
           }
-          console.log('post res: ', res.body)
-          res.json(goal)
+          res.json(goals)
       })
   })
 })
 
 //change a goal
 app.put('/api/home/:id', (req, res) => {
-  // console.log(req.body)
   Goal.findOneAndUpdate(
     {_id: req.params.id},
     {$set:{goal: req.body.goal}},
@@ -81,7 +76,6 @@ app.put('/api/home/:id', (req, res) => {
 app.put('/api/home/completed/:id', (req, res) => {
 
   Goal.findOne({_id: req.params.id}, function(err,obj) {
-    // console.log(obj.completed);
   Goal.findOneAndUpdate(
     {_id: req.params.id},
     {$set:{completed: !obj.completed}},
@@ -115,45 +109,6 @@ app.delete('/api/home/:id', (req, res) => {
     }
   );
 })
-
-// app.get('/api/home/stickers', (req, res) => {
-//
-//     let giphys = () => {
-//         fetch('http://api.giphy.com/v1/gifs/search?q=success&api_key=dc6zaTOxFJmzC', {
-//     	method: 'get'
-//     }).then(response => console.log('RESONE ', response))
-//         //     response.json()
-//         // ).then(x => {
-//         //     console.log('x: ', x)
-//             // let stickers;
-
-//             // console.log('sticker urls fetched: ', stickers)
-//             // return stickers;
-//         // })
-//         .catch(err =>
-//         	console.error(err)
-//         );
-//     }
-// })
-
-// app.post('/api/home/stickers', function(req, res) {
-//   console.log('stickers post req body: ', req.body);
-//     //   goal.goal = req.body.goal
-//     //   goal.completed = false
-//       //
-//     //   goal.save((err, goal) => {
-//     //       if(err){
-//     //           res.send(err)
-//     //       }
-//       //
-//     //       Goal.find({}, (err, goal) => {
-//     //           if(err){
-//     //               res.send(err)
-//     //           }
-//     //           res.json(goal)
-//     //       })
-//     //   })
-// })
 
 let server;
 

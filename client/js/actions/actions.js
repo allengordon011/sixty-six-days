@@ -32,9 +32,9 @@ export const fetchStickersSuccess = stickers => ({
 })
 
 export const EARN_STICKER = 'EARN_STICKER';
-export const earnSticker = sticker => ({
+export const earnSticker = stickers => ({
   type: EARN_STICKER,
-  sticker
+  stickers
 })
 
 

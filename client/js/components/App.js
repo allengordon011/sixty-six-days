@@ -1,35 +1,35 @@
 import React from 'react';
-import Goals from './Goals';
+import GoalsList from './GoalsList';
 import Input from './Input';
-import Stickers from './Stickers';
-import NavBar from './NavBar';
+import StickersList from './StickersList';
+import Quotes from './Quotes';
 
 function App() {
     return (
         <div className="container">
-            <div className="wrapper">
-
                 <section className="main">
-                    <NavBar />
-
                     <header>
-                        <h1 className="main-title">66 Days</h1>
-                        <h2 className="main-subtitle">Set goals, stick to them.</h2>
+                        <Quotes />
                     </header>
-                    <hr></hr>
+                    <hr />
                     <Input />
-                    <hr></hr>
-                    <h3>Your Goals</h3>
-                    <Goals />
+                    <hr />
                 </section>
-                <div className="stickers-sidebar">
-                    <h3>Stickers Earned</h3>
-                    <Stickers />
-                </div>
+
+                <div className="wrapper">
+                    <div className="goals">
+                        <h3>Your Goals</h3>
+                        <GoalsList />
+                    </div>
+                    <div className="stickers-sidebar">
+                        <StickersList />
+                    </div>
             </div>
+            <hr />
             <footer>
-                <div className="tagline">"On average, it takes more than two months before a new behavior becomes automatic — 66 days to be exact."*</div>
-                <div className="source">*Source: "European Journal of Social Psychology"</div>
+                <p className="main-title">Sixty-Six Days</p>
+                <p className="main-subtitle">Set goals, stick to them.</p>
+
             </footer>
         </div>
     )

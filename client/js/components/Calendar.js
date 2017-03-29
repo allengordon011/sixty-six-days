@@ -19,8 +19,4 @@ class Calendar extends React.Component {
     }
 };
 
-const mapStateToProps = (state, props) => ({
-  goals: state.goals
-})
-
-export default connect(mapStateToProps)(Calendar)
+export default Calendar

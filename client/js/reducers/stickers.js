@@ -11,9 +11,7 @@ const stickers = (state=initialState, action) => {
         switch(action.type) {
             case actions.FETCH_STICKERS_REQUEST: {
               console.log('Fetch stickers request');
-              // const i = action.index;
               return state
-            //     ...state
             }
 
             case actions.FETCH_STICKERS_SUCCESS: {
@@ -25,10 +23,10 @@ const stickers = (state=initialState, action) => {
             }
 
             case actions.EARN_STICKER: {
-                console.log('Sticker earned!', action.sticker);
+                console.log('Sticker earned!');
                 return {
                     ...state,
-                  stickers: action.sticker
+                  stickers: action.stickers
               }
             }
 

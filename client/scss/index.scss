@@ -2,46 +2,64 @@
   font-family: 'Dosis', sans-serif;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0eded;
+}
+
 .container {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    padding-left: 10px;
-    max-width: 900px;
+    margin: 15px;
+    max-width: 1200px;
 }
 
 .splash-container {
     display: flex;
+    flex: 1;
     flex-wrap: wrap;
     margin: 0 auto;
+    text-align: center;
 }
 
 .wrapper {
     display: flex;
+    flex: 1;
     flex-direction: row;
-    width: 100%;
-    align-items: center;
+    // width: 100%;
     justify-content: center;
 
 }
 
 .main {
-  // background-color: FOAD4E;
+  background-color: #f0eded;
   display: flex;
   flex-direction: column;
-  flex: 2;
-  text-align: center;
+  flex: 1;
   margin-top: 50px;
+
+}
+
+.goals {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
 }
 
 .stickers-sidebar {
     display: flex;
     flex-direction: column;
     flex: 1;
-    border: 1px solid #a2a2a2;
-    padding: 20px;
-    max-width: 250px;
-    min-height: 350px;
+    // padding: 50px 0 0 10px;
+    max-width: 350px;
+    // min-height: 350px;
+}
+
+.sticker-container {
+    display: flex;
+    flex-direction: column;
+    // position: absolute;
 }
 
 @media (max-width: 600px) {
@@ -57,30 +75,28 @@
     }
 }
 
-.navBar {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.navBarItem {
-    padding: 10px;
-}
-
-
 header {
     margin-top: 15px;
 }
 
 footer {
-    text-align: center;
-    font-size: 12px;
+    // text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-h1,
-h2 {
-    font-family: 'Teko', sans-serif;
+h1 {
+    font-family: 'Anton', sans-serif;
     margin: 0 auto;
+}
+
+h2, h3, label {
+    font-family: 'Pragati Narrow', sans-serif;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin: 15px;
 }
 
 .title {
@@ -88,33 +104,41 @@ h2 {
 }
 
 .subtitle {
-    font-size: 2em;
+    font-size: 2.5em;
     margin: 0 auto;
 }
 
 .main-title {
-    font-size: 2em;
+    font-size: 1.7em;
+    margin: 0;
 }
 
 .main-subtitle {
-    font-size: 1em;
+    font-size: 1.1em;
+    margin: 0 5px;
+}
+
+label {
+    font-size: 1.2em;
 }
 
 input {
+    display: flex;
+    flex-direction: row;
     border-radius: 5px;
     padding: 5px;
-    margin: 5px auto 5px auto;
-    text-align: center;
+    margin: 5px 0 5px 0;
+    text-align: left;
     min-width: 300px;
-    // margin-bottom: 5px;
+    font-size: .9em;
 }
 
-.goals-container {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    margin: 0 25px;
-}
+// .goals-container {
+//     display: flex;
+//     flex-direction: column;
+//     align-content: center;
+//     margin: 0 25px;
+// }
 
 .goal-container {
     display: flex;
@@ -138,29 +162,47 @@ input {
 }
 
 .calendar {
-    font-size: 10px;
+    font-size: .7em;
     color: grey;
     text-align: left;
     margin: 7px;
 }
 
 .sticker {
-    background-color: white;
-    border: 1px solid black;
+    border: 1px solid darkgrey;
     margin: 0 7px;
 }
 
-.sticker-container {
-    display: flex;
-    flex-direction: column;
+img {
+    height: 150px;
+}
+
+p {
+    font-size: .9em;
 }
 
 ul {
     list-style: none;
 }
 
+a {
+    text-decoration: none;
+    font-family: 'Dosis', sans-serif;
+}
+
+hr {
+    background-color: #033658;
+    border: 0;
+    clear: both;
+    display: block;
+    height: 1px;
+    width: 90%;
+}
+
 button {
     border-radius: 5px;
+    border: 0;
+    color: white;
 }
 
 .buttons-group {
@@ -168,41 +210,43 @@ button {
     justify-content: flex-end;
 }
 
-a {
-    text-decoration: none;
-    color: white;
-}
-
 .done {
-    color: white;
     background-color: green;
     margin-left: 1em;
+    font-size: .6em;
 }
 
 .delete {
-    color: white;
     background-color: red;
     margin-left: 1em;
+    font-size: .6em;
 }
 
 .enter {
+    margin: 25px 0 25px 0;
     height: 50px;
     width: 150px;
-    margin-top: 15px;
     align-self: center;
-    font-size: 16px;
-    color: darkgrey;
+    font-size: 1.2em;
+    background-color: #033658;
 }
 
-.feedback {
-    display: none;
+.enter a {
+    color: white;
 }
-// .tagline {
-//     width: 350px;
-//     margin-right: 0;
-//     font-size: 11px;
-//     font-style: italic;
-// }
+
+.quotes {
+    font-size: .9em
+}
+
+.tagline {
+    margin: 7px 0 7px;
+}
+
+.source {
+    font-size: .7em;
+    margin: 0 0 50px;
+}
 
 .strikeThru {
   text-decoration: line-through;

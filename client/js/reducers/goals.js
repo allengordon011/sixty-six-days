@@ -10,7 +10,6 @@ const goals = (state=initialState, action) => {
       console.log('Fetch goals success')
     return {...state,
       goals: action.goals
-    //   completed: action.completed,
     }
   }
   if (action.type === actions.FETCH_ERROR) {

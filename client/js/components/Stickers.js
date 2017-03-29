@@ -8,14 +8,15 @@ class Stickers extends React.Component {
     constructor(props) {
         super(props);
     }
-    // componentWillMount(){
-    //     this.props.dispatch(actions.fetchStickers())
-    // }
+    componentWillMount(){
+        this.props.dispatch(actions.fetchStickers())
+    }
   render() {
 
     return (
       <div className="sticker-container">
-          This is where stickers go!
+          <h3>Stickers Earned</h3>
+
           <StickersList />
       </div>
     )

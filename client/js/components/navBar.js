@@ -7,7 +7,6 @@ function NavBar() {
   return (
     <Navbar>
       <Quotes/>
-      <a href="" className="navLink">Home</a>
   </Navbar>
   )
 }
