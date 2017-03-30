@@ -5,35 +5,56 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #f0eded;
+}
+
+.app {
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    margin: 15px;
-    max-width: 1200px;
+    margin: 15px 0;
 }
 
 .splash-container {
     display: flex;
     flex: 1;
     flex-wrap: wrap;
-    margin: 0 auto;
+    margin: 25px auto;
     text-align: center;
 }
+
+.gradient-container {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 50px 150px 50%;
+    bottom: 0;
+    background: -webkit-linear-gradient(top, rgba(6,149,201,1) 0%, rgba(1,84,117,1) 100%); /* Chrome10+,Safari5.1+ */
+    text-align: center;
+}
+
+.description-item {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    margin: 15px 0;
+    max-width: 200px;
+    min-width: 161px;
+}
+
+.material-icons.md-48 { font-size: 48px; }
 
 .wrapper {
     display: flex;
     flex: 1;
-    flex-direction: row;
-    // width: 100%;
-    justify-content: center;
-
+    margin: 15px 0 15px 50px;
 }
 
 .main {
-  background-color: #f0eded;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -51,38 +72,14 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    // padding: 50px 0 0 10px;
+    margin: 0 50px;
     max-width: 350px;
-    // min-height: 350px;
-}
-
-.sticker-container {
-    display: flex;
-    flex-direction: column;
-    // position: absolute;
-}
-
-@media (max-width: 600px) {
-    .wrapper {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .main {
-        margin-left: 0;
-        margin-bottom: 60px;
-    }
-}
-
-header {
-    margin-top: 15px;
 }
 
 footer {
     // text-align: center;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 h1 {
@@ -92,11 +89,12 @@ h1 {
 
 h2, h3, label {
     font-family: 'Pragati Narrow', sans-serif;
+    font-weight: normal;
 }
 
 h3 {
     font-size: 1.2em;
-    margin: 15px;
+    margin: 15px 0;
 }
 
 .title {
@@ -109,17 +107,33 @@ h3 {
 }
 
 .main-title {
+    font-family: 'Anton', sans-serif;
     font-size: 1.7em;
-    margin: 0;
+    margin: 0 50px;
+    text-align: right;
 }
 
 .main-subtitle {
+    font-family: 'Pragati Narrow', sans-serif;
     font-size: 1.1em;
-    margin: 0 5px;
+    margin: 0 50px;
+    text-align: right;
+}
+
+.stickers-earned {
+    margin-bottom: 0;
+}
+
+.stickers-earned-subtitle {
+    margin-top: 0;
 }
 
 label {
     font-size: 1.2em;
+}
+
+form {
+    margin: 15px 0 16px 50px;
 }
 
 input {
@@ -133,27 +147,19 @@ input {
     font-size: .9em;
 }
 
-// .goals-container {
-//     display: flex;
-//     flex-direction: column;
-//     align-content: center;
-//     margin: 0 25px;
-// }
-
 .goal-container {
     display: flex;
     flex-direction: column;
-    margin: 0 15px;
-    text-align: center;
+    margin-bottom: 10px;
+    max-width: 550px;
 }
 
 .goal-box {
     display: flex;
-    flex-direction: row;
-    align-content: center;
     border: 1px solid grey;
     margin: 0;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .goal-text {
@@ -175,6 +181,9 @@ input {
 
 img {
     height: 150px;
+    margin: 0 0 2px;
+    border: 1px solid darkgrey;
+    border-radius: 10px;
 }
 
 p {
@@ -193,10 +202,8 @@ a {
 hr {
     background-color: #033658;
     border: 0;
-    clear: both;
-    display: block;
     height: 1px;
-    width: 90%;
+    width: 99%;
 }
 
 button {
@@ -233,10 +240,14 @@ button {
 
 .enter a {
     color: white;
+    font-family: 'Pragati Narrow', sans-serif;
 }
 
 .quotes {
-    font-size: .9em
+    font-size: .9em;
+    text-align: right;
+    margin: 0 50px;
+    max-width: 900px;
 }
 
 .tagline {
@@ -244,10 +255,68 @@ button {
 }
 
 .source {
+    margin: 0;
     font-size: .7em;
-    margin: 0 0 50px;
 }
 
 .strikeThru {
   text-decoration: line-through;
+}
+
+@media (max-width: 600px) {
+    .splash-container {
+        margin: 5px auto;
+    }
+    .gradient-container {
+        padding: 35px;
+    }
+    .description-item {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 10px auto;
+    }
+    .title {
+    font-size: 4em;
+    }
+    .subtitle {
+    font-size: 2em;
+    }
+    .enter {
+    margin: 15px 0 15px 0;
+    }
+    .wrapper {
+        flex-direction: column;
+        padding: 0;
+        margin: 15px 15px 25px;
+    }
+    .stickers-sidebar {
+        margin: 0;
+    }
+    .main {
+        margin: 0 5px;
+    }
+    .tagline, .source {
+        margin: 2px 10px 5px;
+    }
+    .quotes {
+        margin: 15px;
+        text-align: center;
+    }
+    form {
+        margin: 15px;
+    }
+    h3 {
+        margin: 0 0 5px;
+    }
+    .main-title {
+        font-size: 1.5em;
+        margin: 0 35px;
+        text-align: center;
+    }
+    .main-subtitle {
+        font-size: .9em;
+        margin: 0 35px;
+        text-align: center;
+    }
 }

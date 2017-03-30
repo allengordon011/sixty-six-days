@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Description from './Description';
 
 function Splash() {
     return (
@@ -17,6 +18,7 @@ function Splash() {
                         <p className="source">Source: "European Journal of Social Psychology"</p>
                     </section>
                 </div>
+                    <Description />
         </div>
     )
 }

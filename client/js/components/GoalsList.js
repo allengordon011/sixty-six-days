@@ -55,9 +55,9 @@ class GoalsList extends React.Component {
             })
 
         return (
-            <div>
+            <div className="goals">
+                <h3>Your Goals</h3>
                 {goalsList}
-
             </div>
         )
     }

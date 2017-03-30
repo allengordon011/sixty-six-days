@@ -6,7 +6,7 @@ import Quotes from './Quotes';
 
 function App() {
     return (
-        <div className="container">
+        <div className="app">
                 <section className="main">
                     <header>
                         <Quotes />
@@ -17,14 +17,11 @@ function App() {
                 </section>
 
                 <div className="wrapper">
-                    <div className="goals">
-                        <h3>Your Goals</h3>
                         <GoalsList />
-                    </div>
                     <div className="stickers-sidebar">
                         <StickersList />
                     </div>
-            </div>
+                </div>
             <hr />
             <footer>
                 <p className="main-title">Sixty-Six Days</p>
