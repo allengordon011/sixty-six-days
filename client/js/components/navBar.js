@@ -1,17 +1,13 @@
 import React from 'react'
 import Quotes from './quotes';
+import { Navbar } from 'react-bootstrap';
 
 
 function NavBar() {
   return (
-    <div className="navBar">
+    <Navbar>
       <Quotes/>
-      {/* <a href="" className="navBarItem">Home</a>
-      &nbsp;
-      <a href="" className="navBarItem">Profile</a>
-      &nbsp;
-      <a href="" className="navBarItem">Groups</a> */}
-    </div>
+  </Navbar>
   )
 }
 

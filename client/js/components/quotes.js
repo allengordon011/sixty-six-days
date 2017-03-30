@@ -34,14 +34,13 @@ const quotes = [
 ];
 
 const randomize = Math.floor(Math.random()*15);
-// console.log(images[randomize]);
 
 function Quotes() {
   return (
-    <div className="quotes">
-      <p className="quote">{quotes[0]}</p>
-    </div>
-  )
+        <div className="quotes">
+          {quotes[randomize]}
+        </div>
+      )
 }
 
 export default Quotes

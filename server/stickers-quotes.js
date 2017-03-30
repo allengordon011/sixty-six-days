@@ -1,7 +1,3 @@
-import React from 'react'
-import {connect} from 'react-redux';
-
-
 const images = [
   'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT0hCinHGYyY6xo2azGQVC2udeCPFWcvCSnDteoJ15ifC3qcNOu',
   'https://www.homecirclemedia.com/image/cache/data/Fairy_Tail_Happy_Sticker-500x500.jpg',
@@ -59,46 +55,3 @@ const quotes = [
   'This one step – choosing a goal and sticking to it – changes everything.'+
   '-Scott Reed'
 ];
-
-const randomize = Math.floor(Math.random()*4);
-// console.log(images[randomize]);
-
-export class Sticker extends React.Component {
-
-  render() {
-
-    const completedSticker = this.props.userGoals.map((goal, idx) => {
-      const randomize = Math.floor(Math.random()*4);
-      if(goal.completed){
-        return (
-          <div>
-            <img height={120} className='sticker' key={idx} src={images[randomize]} />
-            <p className="quote">{feedback[randomize]}</p>
-          </div>
-        )
-      }
-      //
-
-    })
-
-    return (
-      <div className="sticker-container">
-        <img height={120} className='sticker' src={images[4]} />
-        <p className="quote">{feedback[0]}</p>
-        <img height={120} className='sticker' src={images[1]} />
-        <p className="quote">{feedback[1]}</p>
-        <img height={120} className='sticker' src={images[3]} />
-        <p className="quote">{feedback[2]}</p>
-        {completedSticker}
-      </div>
-    )
-  }
-}
-
-const mapStateToProps = (state, props) => ({userGoals: state.goals})
-
-export default connect(mapStateToProps)(Sticker)
-
-//eventually make this pull from users the array of images and
-// quotes that user has earned. This will mapStateToProps and pull
-// from the user collection
