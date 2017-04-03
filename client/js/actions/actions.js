@@ -108,7 +108,7 @@ export const updateCompletedGoal = (id) => dispatch => {
 export const fetchStickers = () => dispatch => {
     // return (dispatch) => dispatch(fetchStickersRequest)
 
-    fetch('http://api.giphy.com/v1/gifs/search?q=success&api_key=dc6zaTOxFJmzC', {
+    fetch('https://api.giphy.com/v1/gifs/search?q=success&api_key=dc6zaTOxFJmzC', {
     method: 'get'
     })
     .then(response => response.json())

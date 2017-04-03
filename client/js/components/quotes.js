@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const quotesArray = [
   'Nothing can stop the man with the right mental attitude from achieving his goal; nothing on earth can help the man with the wrong mental attitude.\
