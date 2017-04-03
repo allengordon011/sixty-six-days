@@ -1,6 +1,6 @@
 # Sixty-Six Days
 
-An app intended to be used to let users set goals, and to help them create new, good habits.
+An app intended to be used to let users set goals to help them create new, good habits.
 
 ![screenshot](/Sixty-Six-Days_Screenshot-Splash.png?raw=true "Splash Page")
 
@@ -16,11 +16,15 @@ As a user, I should be able to set up my goals, with reminders, and check off if
 
 ### Technology used
 
+* Node
+* Express
 * React
-* Redux https://github.com/oampo/thinkful-full-stack-template YOUR_PROJECT_NAME`
+* React Router
+* Redux
+* Mongoose
 * Travis CI
 * Heroku
 
 ### Lessons Learned
 
-*
+* This is my second iteration of this app. Reworking it took much longer than I expected. Breaking down code and supplementing it turns out to be very time-consuming!
