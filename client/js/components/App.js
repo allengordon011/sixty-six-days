@@ -2,13 +2,13 @@ import React from 'react';
 import GoalsList from './GoalsList';
 import Input from './Input';
 import StickersList from './StickersList';
-import Quotes from './Quotes';
+import Quote from './Quote';
 
 function App() {
     return (
         <div className="app">
-                <section className="main-header">
-                    <Quotes />
+                <section className="main">
+                    <Quote />
                     <hr />
                     <Input />
                     <hr />

@@ -35,7 +35,7 @@ const quotesArray = [
 
 const randomize = Math.floor(Math.random()*15);
 
-function Quotes() {
+function Quote() {
   return (
         <div className="quotes">
           {quotesArray[randomize]}
@@ -43,4 +43,4 @@ function Quotes() {
       )
 }
 
-export default Quotes;
+export default Quote;
