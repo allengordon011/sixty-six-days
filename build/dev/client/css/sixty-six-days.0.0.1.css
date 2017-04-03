@@ -1,0 +1,263 @@
+* {
+  font-family: 'Dosis', sans-serif; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+.app {
+  margin: 0 auto;
+  max-width: 1000px; }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0; }
+
+.splash-container {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  margin: 25px auto;
+  text-align: center; }
+
+.gradient-container {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 50px 150px 50%;
+  bottom: 0;
+  background: -webkit-linear-gradient(top, #0695c9 0%, #015475 100%);
+  /* Chrome10+,Safari5.1+ */
+  text-align: center; }
+
+.description-item {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  margin: 15px 0;
+  max-width: 200px;
+  min-width: 161px; }
+
+.material-icons.md-48 {
+  font-size: 48px; }
+
+.wrapper {
+  display: flex;
+  flex: 1;
+  margin: 15px 0 15px 50px; }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 50px; }
+
+.goals {
+  display: flex;
+  flex-direction: column;
+  flex: 2; }
+
+.stickers-sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0 50px;
+  max-width: 350px; }
+
+footer {
+  margin-bottom: 20px;
+  margin-top: 10px; }
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  margin: 0 auto; }
+
+h2, h3, label {
+  font-family: 'Pragati Narrow', sans-serif;
+  font-weight: normal; }
+
+h3 {
+  font-size: 1.2em;
+  margin: 15px 0; }
+
+.title {
+  font-size: 5em; }
+
+.subtitle {
+  font-size: 2.5em;
+  margin: 0 auto; }
+
+.main-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.7em;
+  margin: 0 50px;
+  text-align: right; }
+
+.main-subtitle {
+  font-family: 'Pragati Narrow', sans-serif;
+  font-size: 1.1em;
+  margin: 0 50px;
+  text-align: right; }
+
+.stickers-earned {
+  margin-bottom: 0; }
+
+.stickers-earned-subtitle {
+  margin-top: 0; }
+
+label {
+  font-size: 1.2em; }
+
+form {
+  margin: 15px 0 16px 50px; }
+
+input {
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 0 5px 0;
+  text-align: left;
+  min-width: 300px;
+  font-size: .9em; }
+
+.goal-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  max-width: 550px; }
+
+.goal-box {
+  display: flex;
+  border: 1px solid grey;
+  margin: 0;
+  padding: 10px;
+  border-radius: 5px; }
+
+.goal-text {
+  vertical-align: bottom; }
+
+.calendar {
+  font-size: .7em;
+  color: grey;
+  text-align: left;
+  margin: 7px; }
+
+.sticker {
+  border: 1px solid darkgrey;
+  margin: 0 7px; }
+
+img {
+  height: 150px;
+  margin: 0 0 2px;
+  border: 1px solid darkgrey;
+  border-radius: 10px; }
+
+p {
+  font-size: .9em; }
+
+ul {
+  list-style: none; }
+
+a {
+  text-decoration: none;
+  font-family: 'Dosis', sans-serif; }
+
+hr {
+  background-color: #033658;
+  border: 0;
+  height: 1px;
+  width: 99%; }
+
+button {
+  border-radius: 5px;
+  border: 0;
+  color: white; }
+
+.buttons-group {
+  display: flex;
+  justify-content: flex-end; }
+
+.done {
+  background-color: green;
+  margin-left: 1em;
+  font-size: .6em; }
+
+.delete {
+  background-color: red;
+  margin-left: 1em;
+  font-size: .6em; }
+
+.enter {
+  margin: 25px 0 25px 0;
+  height: 50px;
+  width: 150px;
+  align-self: center;
+  font-size: 1.2em;
+  background-color: #033658; }
+
+.enter a {
+  color: white;
+  font-family: 'Pragati Narrow', sans-serif; }
+
+.quotes {
+  font-size: .9em;
+  text-align: right;
+  margin: 0 50px;
+  max-width: 900px; }
+
+.tagline {
+  margin: 7px 0 7px; }
+
+.source {
+  margin: 0;
+  font-size: .7em; }
+
+.strikeThru {
+  text-decoration: line-through; }
+
+@media (max-width: 600px) {
+  .splash-container {
+    margin: 5px auto; }
+  .gradient-container {
+    padding: 35px; }
+  .description-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto; }
+  .title {
+    font-size: 4em; }
+  .subtitle {
+    font-size: 2em; }
+  .enter {
+    margin: 15px 0 15px 0; }
+  .wrapper {
+    flex-direction: column;
+    padding: 0;
+    margin: 15px 15px 25px; }
+  .stickers-sidebar {
+    margin: 0; }
+  .main {
+    margin: 0 5px; }
+  .tagline, .source {
+    margin: 2px 10px 5px; }
+  .quotes {
+    margin: 15px;
+    text-align: center; }
+  form {
+    margin: 15px; }
+  h3 {
+    margin: 0 0 5px; }
+  .main-title {
+    font-size: 1.5em;
+    margin: 0 35px;
+    text-align: center; }
+  .main-subtitle {
+    font-size: .9em;
+    margin: 0 35px;
+    text-align: center; } }
+
+/*# sourceMappingURL=sixty-six-days.0.0.1.css.map */
