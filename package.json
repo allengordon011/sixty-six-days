@@ -1,7 +1,7 @@
 {
   "name": "sixty-six-days",
   "version": "0.0.1",
-  "description": "A template for developing and deploying full stack JavaScript apps",
+  "description": "An app for setting goals to create new good habits.",
   "main": "index.js",
   "main:server": "server/index.js",
   "main:client": "client/js/index.js",

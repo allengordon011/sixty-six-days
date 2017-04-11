@@ -2,14 +2,21 @@
   font-family: 'Dosis', sans-serif;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
+    background: -webkit-linear-gradient(top, rgba(6,149,201,1) 0%, rgba(1,84,117,1) 100%); /* Chrome10+,Safari5.1+ */
 }
 
 .app {
-    margin: 0 auto;
+    margin: 25px auto;
     max-width: 1000px;
+    background: white;
+    padding: 50px 20%;
 }
 
 .container {
@@ -22,26 +29,34 @@ body {
     display: flex;
     flex: 1;
     flex-wrap: wrap;
-    margin: 25px auto;
+    margin: 0 auto;
     text-align: center;
+    background-color: white;
+    padding: 35px;
 }
 
 .gradient-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 150px;
+    bottom: 0;
+    text-align: center;
+}
+
+.description-items-container {
+    max-width: 900px;
+    display: flex;
     flex: 1;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 50px 150px 50%;
-    bottom: 0;
-    background: -webkit-linear-gradient(top, rgba(6,149,201,1) 0%, rgba(1,84,117,1) 100%); /* Chrome10+,Safari5.1+ */
-    text-align: center;
 }
 
 .description-item {
     order: 0;
     flex: 0 1 auto;
     align-self: auto;
-    margin: 15px 0;
+    margin: 25px;
     max-width: 200px;
     min-width: 161px;
 }
@@ -58,7 +73,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-top: 50px;
+  margin-top: 75px;
 
 }
 
@@ -103,7 +118,7 @@ h3 {
 
 .subtitle {
     font-size: 2.5em;
-    margin: 0 auto;
+    margin: 0 50px 25px;
 }
 
 .main-title {
@@ -264,11 +279,27 @@ button {
 }
 
 @media (max-width: 600px) {
+    html {
+        height: 1px;
+    }
+    body {
+        // background: white;
+        margin: 0 auto;
+    }
+    .app {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
     .splash-container {
-        margin: 5px auto;
+        padding: 25px;
     }
     .gradient-container {
         padding: 35px;
+    }
+    .description-items-container {
     }
     .description-item {
         flex-direction: column;
@@ -278,6 +309,7 @@ button {
     }
     .title {
     font-size: 4em;
+    margin: 25px 0 0;
     }
     .subtitle {
     font-size: 2em;
@@ -295,12 +327,22 @@ button {
     }
     .main {
         margin: 0 5px;
+        align-items: center;
+    }
+    input {
+        text-align: center;
+    }
+    .goal-box {
+        align-self: center;
+    }
+    .calendar {
+        text-align: center;
     }
     .tagline, .source {
         margin: 2px 10px 5px;
     }
     .quotes {
-        margin: 15px;
+        margin: 15px 0 0;
         text-align: center;
     }
     form {
@@ -311,7 +353,7 @@ button {
     }
     .main-title {
         font-size: 1.5em;
-        margin: 0 35px;
+        margin: 20px 35px 0;
         text-align: center;
     }
     .main-subtitle {

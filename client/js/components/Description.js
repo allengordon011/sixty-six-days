@@ -3,7 +3,7 @@ import React from 'react'
 const Description = () => {
 
     return (
-      <div className="gradient-container">
+      <div className="description-items-container">
         <div className="description-item">
               <i className="material-icons md-48">lightbulb_outline</i>
               <h3>Create a Goal</h3>

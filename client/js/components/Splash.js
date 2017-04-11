@@ -18,8 +18,10 @@ function Splash() {
                         <p className="source">Source: "European Journal of Social Psychology"</p>
                     </section>
                 </div>
-                    <Description />
-        </div>
+                <div className="gradient-container">
+                <Description />
+                </div>
+            </div>
     )
 }
 
