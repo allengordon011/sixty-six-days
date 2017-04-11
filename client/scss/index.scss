@@ -3,7 +3,7 @@
 }
 
 html {
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -73,7 +73,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-top: 75px;
+  margin-top: 35px;
 
 }
 
@@ -278,10 +278,7 @@ button {
   text-decoration: line-through;
 }
 
-@media (max-width: 600px) {
-    html {
-        height: 1px;
-    }
+@media (max-width: 736px) {
     body {
         // background: white;
         margin: 0 auto;
@@ -320,7 +317,7 @@ button {
     .wrapper {
         flex-direction: column;
         padding: 0;
-        margin: 15px 15px 25px;
+        margin: 0;
     }
     .stickers-sidebar {
         margin: 0;
@@ -334,6 +331,7 @@ button {
     }
     .goal-box {
         align-self: center;
+        min-width: 320px;
     }
     .calendar {
         text-align: center;
