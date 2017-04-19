@@ -1,6 +1,7 @@
 import 'isomorphic-fetch'
 
-const url = `/api/home`
+const goalUrl = '/api/goal'
+const userUrl = '/api/user'
 
 export const FETCH_GOALS_REQUEST = 'FETCH_GOALS_REQUEST';
 export const fetchGoalsRequest = () => ({
@@ -39,7 +40,7 @@ export const earnSticker = stickers => ({
 
 
 export const fetchGoals = () => dispatch => {
-  return fetch(url)
+  return fetch(goalUrl)
   // .then(dispatch(fetchRequest()))
   .then(response => {
     if (!response.ok) {
@@ -59,7 +60,7 @@ export const fetchGoals = () => dispatch => {
 };
 
 export const postGoal = (goal) => dispatch => {
-  return fetch(url, {
+  return fetch(goalUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -73,14 +74,14 @@ export const postGoal = (goal) => dispatch => {
 }
 
 export const deleteGoal = (id) => dispatch => {
-  return fetch(url + "/" + id, {
+  return fetch(goalUrl + "/" + id, {
     method: 'DELETE'
   })
   .then(() => dispatch(fetchGoals()))
 }
 
 export const updateGoal = (goal, id) => dispatch => {
-  return fetch(url + "/" + id, {
+  return fetch(goalUrl + "/" + id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -95,7 +96,7 @@ export const updateGoal = (goal, id) => dispatch => {
 }
 
 export const updateCompletedGoal = (id) => dispatch => {
-  return fetch(url + "/completed/" + id, {
+  return fetch(goalUrl + "/completed/" + id, {
       method: 'PUT'
       })
       .then(() => dispatch(fetchGoals())
@@ -118,4 +119,38 @@ export const fetchStickers = () => dispatch => {
         dispatch(fetchStickersSuccess(gifs))
     })
     .catch(err => console.error(err))
+}
+
+export const signupUser = (username, password) => dispatch => {
+  return fetch('/api/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username,
+      password
+    })
+  })
+  .then(response => response.json())
+  .then(json => console.log('SIGNUP USER RES: ', json)
+    //   dispatch(fetchGoalsSuccess(json))
+  )
+}
+
+export const loginUser = (username, password) => dispatch => {
+  return fetch('/api/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username,
+      password
+    })
+  })
+  .then(response => response.json())
+  .then(json => console.log('LOGIN USER RES: ', json)
+    //   dispatch(fetchGoalsSuccess(json))
+  )
 }

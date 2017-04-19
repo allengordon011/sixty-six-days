@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stock Saver Login</title>
+    <meta name="description" content="Financial stock search and save tool">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link href="https://fonts.googleapis.com/css?family=Anton|News+Cycle|Roboto:300" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+
+  </head>
+  <body>
+         <div class="flex-container-2">
+           <div class="jumbotron text-center">
+             <h1><span class="fa fa-sign-in"></span> Login</h1>
+             <div>
+
+                 <form id="js-login-form">
+                     <div class="alert alert-warning"></div>
+                     <p class="demo-user">For demonstration purposes: <br> username: demo password: password</p>
+                       <div class="form-group">
+                           <label>Username</label>
+                           <input type="text" class="form-control" name="username" id="js-text">
+                       </div>
+                       <div class="form-group">
+                         <label>Password</label>
+                         <input type="password" class="form-control" name="password" id="js-text"/>
+                       </div>
+                       <div>
+                         <input type="submit" class="form-control" id="form-button" value="SUBMIT" />
+                       </div>
+                     </form>
+
+               </div>
+           </div>
+           <div class="panel-footer">
+               <p>Forgot your password? Please email <a href="mailto:support@trig010.com?subject=Forgot Password">support@trig010.com</a></p>
+               Don't have an account? <span class="fa fa-sign-in">
+               </span>
+               <a href="/signup.html"> Signup</a>
+               <p>Or go <a href="/">home</a>.</p>
+           </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+     <script src="app.js"></script>
+
+   </body>
+ </html>
