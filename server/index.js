@@ -10,15 +10,35 @@ const HOST = process.env.HOST;
 const {PORT, DATABASE_URL} = require('./database');
 mongoose.Promise = global.Promise;
 
+const app = express();
+const passport = require('passport');
+const flash    = require('connect-flash');
+
+const morgan       = require('morgan');
+const cookieParser = require('cookie-parser');
 const jsonParser = bodyParser.json();
+
+app.set('view engine', 'ejs'); // set up ejs for templating
 
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
-const app = express();
+const session = require('express-session');
 
 app.use(express.static(process.env.CLIENT_PATH));
 // app.use(express.static(path.join(__dirname, '../client'))); //required for tests
+
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
 app.use(jsonParser);
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+//
+require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
 
 //fetch goals from db
 app.get('/api/home', (request, response) => {

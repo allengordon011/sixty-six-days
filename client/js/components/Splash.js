@@ -11,7 +11,18 @@ function Splash() {
                             <h1 className="title">Sixty-Six Days</h1>
                             <h2 className="subtitle">Set goals, stick to them.</h2>
                         </header>
+                        <div className="fluid-container">
 
+                            <div className="login-signup-container">
+                                <h1 className="login-signup-title"> Node Authentication</h1>
+
+                                <p>Login or Register with:</p>
+
+                                <a href="/login" className="login-button"><button> Local Login</button></a>
+                                <a href="/signup" className="signup-button"><button> Local Signup</button></a>
+                            </div>
+
+                        </div>
                         <button className="enter"><Link to="/main">ENTER</Link></button>
                         <hr />
                         <p className="tagline">On average, it takes more than two months before a new behavior becomes automatic — 66 days to be exact.</p>
