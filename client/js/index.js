@@ -13,16 +13,16 @@ import Splash from './components/Splash';
 
 console.log(`Client running in ${process.env.NODE_ENV} mode`);
 
-document.addEventListener('DOMContentLoaded', () => {
-  return ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <Switch>
-                <Route exact path="/" component={Splash} />
-                <Route path="/main" component={App} />
-            </Switch>
-        </Router>
-    </Provider>,
-    document.getElementById('app')
-  )
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//   return ReactDOM.render(
+//     <Provider store={store}>
+//         <Router>
+//             <Switch>
+//                 <Route exact path="/" component={Splash} />
+//                 <Route path="/main" component={App} />
+//             </Switch>
+//         </Router>
+//     </Provider>,
+//     document.getElementById('app')
+//   )
+// })

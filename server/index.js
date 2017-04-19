@@ -5,7 +5,7 @@ import Goal from '../models/goal';
 
 import bodyParser from 'body-parser';
 const path = require('path');
-
+ 
 const HOST = process.env.HOST;
 const {PORT, DATABASE_URL} = require('./database');
 mongoose.Promise = global.Promise;
@@ -26,6 +26,8 @@ const session = require('express-session');
 
 app.use(express.static(process.env.CLIENT_PATH));
 // app.use(express.static(path.join(__dirname, '../client'))); //required for tests
+
+require('../config/passport')(passport);
 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
