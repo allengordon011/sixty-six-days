@@ -1,7 +1,8 @@
-import 'isomorphic-fetch'
+import 'isomorphic-fetch';
+import history from '../history';
 
-const goalUrl = '/api/goal'
-const userUrl = '/api/user'
+const goalUrl = '/api/goal';
+const userUrl = '/api/user';
 
 export const FETCH_GOALS_REQUEST = 'FETCH_GOALS_REQUEST';
 export const fetchGoalsRequest = () => ({
@@ -38,6 +39,11 @@ export const earnSticker = stickers => ({
   stickers
 })
 
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const loginSuccess = html => ({
+    type: LOGIN_SUCESS,
+    html
+})
 
 export const fetchGoals = () => dispatch => {
   return fetch(goalUrl)
@@ -150,7 +156,13 @@ export const loginUser = (username, password) => dispatch => {
     })
   })
   .then(response => response.json())
-  .then(json => console.log('LOGIN USER RES: ', json)
-    //   dispatch(fetchGoalsSuccess(json))
-  )
+  .then(json => {
+      if(json.ok){
+          console.log(history);
+          history.push('/app')
+      }
+      else {
+          console.log('FE ? ', json)
+      }
+  })
 }

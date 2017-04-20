@@ -12,7 +12,7 @@ class InputSignup extends React.Component {
         const username = this.userInput.value;
         const password = this.pwInput.value;
         this.props.dispatch(actions.signupUser(username, password))
-        console.log('fired off postUser event', username, password)
+        console.log('fired off signupUser event', username, password)
         this.userInput.value = '';
         this.pwInput.value = '';
     }

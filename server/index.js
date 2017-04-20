@@ -46,6 +46,11 @@ app.get('*', function (request, response){
   response.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
 })
 
+//protected endpoint
+app.get('/app', isLoggedIn, function(req, res) {
+    res.status(200).json({user: req.user});
+});
+
 //user signup
 app.post('/api/signup', passport.authenticate('local-signup', {
     successRedirect: '/app',
@@ -54,13 +59,22 @@ app.post('/api/signup', passport.authenticate('local-signup', {
 }))
 
 //user login
-app.post('/api/login', passport.authenticate('local-login', {
-    successRedirect: '/app',
-    failureRedirect: '/login',
-    failureFlash: true
-}), function(req, res) {
-    res.redirect('/app');
-})
+app.post('/api/login', passport.authenticate('local-login', function(req, res, err) {
+    if(err){
+        console.log('ERROR: ', err);
+        res.json({error: err});
+
+    } else {
+        res.json({ok: true});
+    }
+}))
+
+//user logout
+app.get('/logout', function(req, res) {
+    req.logout();
+    req.session.destroy();
+    return res.redirect(204, '/');
+});
 
 //user delete
 app.delete('/api/user', isLoggedIn, function(req, res, next) {
@@ -179,11 +193,11 @@ app.delete('/api/goal/:id', (req, res) => {
 
 //Check if user is logged in
 function isLoggedIn(req, res, next) {
-    // console.log('isLoggedIn req', req.isAuthenticated())
+    console.log('isLoggedIn req', req.isAuthenticated())
     if (req.isAuthenticated()) {
         return next();
     } else {
-        return res.redirect('/login.html');
+        return res.redirect('/login');
     }
 }
 

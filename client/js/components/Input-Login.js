@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
 
-class InputSignup extends React.Component {
+class InputLogin extends React.Component {
     constructor(props) {
         super(props);
         this.postUser = this.postUser.bind(this);
@@ -12,7 +12,7 @@ class InputSignup extends React.Component {
         const username = this.userInput.value;
         const password = this.pwInput.value;
         this.props.dispatch(actions.loginUser(username, password))
-        console.log('fired off getUser event', username, password)
+        console.log('fired off loginUser event', username, password)
         this.userInput.value = '';
         this.pwInput.value = '';
     }
@@ -41,4 +41,4 @@ class InputSignup extends React.Component {
 
 // const mapStateToProps = (state, props) => ({goals: state.goals})
 
-export default connect()(InputSignup)
+export default connect()(InputLogin)
