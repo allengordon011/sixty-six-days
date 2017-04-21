@@ -3,6 +3,7 @@ import GoalsList from './GoalsList';
 import Input from './Input';
 import StickersList from './StickersList';
 import Quote from './Quote';
+import LogoutButton from './Button-Logout';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 </div>
             <hr />
             <footer>
+                <LogoutButton />
                 <p className="main-title">Sixty-Six Days</p>
                 <p className="main-subtitle">Set goals, stick to them.</p>
 

@@ -156,13 +156,26 @@ export const loginUser = (username, password) => dispatch => {
     })
   })
   .then(response => response.json())
+    //   console.log('LOGIN RES: ', response.json()))
+
   .then(json => {
-      if(json.ok){
-          console.log(history);
+      console.log(json)
+      if(json.user){
           history.push('/app')
       }
-      else {
-          console.log('FE ? ', json)
-      }
   })
+  // .then(dispatch(loginUserSuccess()))
+}
+
+export const logoutUser = () => {
+    fetch('/api/logout', {
+        method: 'get'
+    }).then(
+    console.log('fired off logoutUser event'))
+    .then(response => response.json())
+    .then(json => {
+        if(json.ok){
+            history.push('/')
+        }
+    })
 }

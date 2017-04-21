@@ -1,16 +1,22 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../actions/actions';
 
-function Logout() {
-
-    function handleClick() {
-        fetch('/api/logout', {
-            method: 'get'
-        })
-        console.log('fired off loginUser event')
+class LogoutButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
     }
-    return (
-        <div className="logout-container">
-            <button className="logout-button" onClick={this.handleClick}>Logout</button>
-        </div>
-    )
+    handleClick(){
+        this.props.dispatch(actions.logoutUser);
+    }
+    render(){
+        return (
+            <div className="logout-container">
+                <button className="logout-button" onClick={this.handleClick}>Logout</button>
+            </div>
+        )
+    }
 }
+
+export default connect()(LogoutButton);

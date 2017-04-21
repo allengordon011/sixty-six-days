@@ -1,33 +1,30 @@
 import 'babel-polyfill';
 import express from 'express';
 import mongoose from 'mongoose';
-import Goal from '../models/goal';
-
-import bodyParser from 'body-parser';
 const path = require('path');
-
-const HOST = process.env.HOST;
-const {PORT, DATABASE_URL} = require('./database');
-mongoose.Promise = global.Promise;
-
+import bodyParser from 'body-parser';
 const jsonParser = bodyParser.json();
-
-console.log(`Server running in ${process.env.NODE_ENV} mode`);
-
 const morgan = require('morgan');
 const app = express();
+app.use(morgan('common'));
+app.use(jsonParser);
+
+const {User} = require('../models/user');
+import Goal from '../models/goal';
+
+
 const cookieParser = require('cookie-parser');
 const passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 var flash = require('connect-flash');
 
-const {User} = require('../models/user');
 
 app.use(express.static(process.env.CLIENT_PATH));
 // app.use(express.static(path.join(__dirname, '../client'))); //required for tests
-app.use(morgan('common'));
-app.use(jsonParser);
+console.log(`Server running in ${process.env.NODE_ENV} mode`);
+
+mongoose.Promise = global.Promise;
 
 app.use(cookieParser('galapagos'));
 app.use(session({
@@ -42,9 +39,12 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('*', function (request, response){
-  response.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
-})
+const HOST = process.env.HOST;
+const {PORT, DATABASE_URL} = require('./database');
+
+// app.get('*', function (request, response){
+//   response.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
+// })
 
 //protected endpoint
 app.get('/app', isLoggedIn, function(req, res) {
@@ -59,21 +59,22 @@ app.post('/api/signup', passport.authenticate('local-signup', {
 }))
 
 //user login
-app.post('/api/login', passport.authenticate('local-login', function(req, res, err) {
-    if(err){
-        console.log('ERROR: ', err);
-        res.json({error: err});
+app.post('/api/login', passport.authenticate('local-login', {
+    // successRedirect: '/app',
+    failureRedirect: '/login',
+    failureFlash: true
+}), function(req, res) {
+    console.log('USER? ', req.user)
+    console.log('SESSION AT LOGIN? ', req.session)
 
-    } else {
-        res.json({ok: true});
-    }
-}))
+    res.json({user: req.user});
+})
 
 //user logout
-app.get('/logout', function(req, res) {
+app.get('/api/logout', function(req, res) {
     req.logout();
     req.session.destroy();
-    return res.redirect(204, '/');
+    res.json({ok: true});
 });
 
 //user delete
@@ -101,19 +102,19 @@ app.get('/api/user', isLoggedIn, function(req, res, next) {
 //****OLD ENDPOINTS****//
 
 //fetch goals from db
-app.get('/api/goal', (request, response) => {
+app.get('/api/goal', isLoggedIn, (req, res, next) => {
   Goal.find({})
   .then((goals) => {
-    return response.status(200).json(goals);
+    return res.status(200).json(goals);
   })
   .catch(err => {
     console.error(err);
-    response.status(500).json({message: 'internal server error'})
+    res.status(500).json({message: 'internal server error'})
   })
 })
 
 //post a goal to db
-app.post('/api/goal', function(req, res) {
+app.post('/api/goal', isLoggedIn, function(req, res) {
 
   let goal = new Goal()
       goal.goal = req.body.goal
@@ -193,19 +194,25 @@ app.delete('/api/goal/:id', (req, res) => {
 
 //Check if user is logged in
 function isLoggedIn(req, res, next) {
+    console.log('isLoggedIn req session', req.session)
+
     console.log('isLoggedIn req', req.isAuthenticated())
+    // console.log('test session user: ', req.session.passport.user)
     if (req.isAuthenticated()) {
         return next();
     } else {
-        return res.redirect('/login');
+        return res.status(403).json({message: 'User Not Logged In'});
+        // return res.redirect('/login');
     }
 }
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    console.log('Serializing User', user);
+    done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
+    console.log('Calling Deserialize');
     User.findById(id, function(err, user) {
         done(err, user);
     });
@@ -229,7 +236,7 @@ passport.use('local-signup', new LocalStrategy(function(username, password, done
         });
     })
     .catch(function () {
-         console.error("Promise Rejected");
+         console.error("Signup Rejected");
     });
 }));
 
@@ -252,7 +259,7 @@ passport.use('local-login', new LocalStrategy(function(username, password, done)
         }
     })
     .catch(function () {
-         console.error("Promise Rejected");
+         console.error("Login Rejected");
     });
 }));
 
