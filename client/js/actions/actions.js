@@ -1,5 +1,7 @@
 import 'isomorphic-fetch';
-import history from '../history';
+// import history from '../history';
+// import {browserHistory} from 'react-router';
+import { push } from 'connected-react-router'
 
 const goalUrl = '/api/goal';
 const userUrl = '/api/user';
@@ -46,7 +48,9 @@ export const loginSuccess = html => ({
 })
 
 export const fetchGoals = () => dispatch => {
-  return fetch(goalUrl)
+  return fetch(goalUrl, {
+      credentials: 'same-origin'
+  })
   // .then(dispatch(fetchRequest()))
   .then(response => {
     if (!response.ok) {
@@ -150,6 +154,7 @@ export const loginUser = (username, password) => dispatch => {
     headers: {
       'Content-Type': 'application/json'
     },
+    credentials: 'same-origin',
     body: JSON.stringify({
       username,
       password
@@ -161,10 +166,12 @@ export const loginUser = (username, password) => dispatch => {
   .then(json => {
       console.log(json)
       if(json.user){
-          history.push('/app')
+          console.log('go to app page!')
       }
   })
   // .then(dispatch(loginUserSuccess()))
+  .then(dispatch(push('/app')))
+  .catch(err => console.log('LOGIN ERROR: ', err))
 }
 
 export const logoutUser = () => {
@@ -172,10 +179,11 @@ export const logoutUser = () => {
         method: 'get'
     }).then(
     console.log('fired off logoutUser event'))
-    .then(response => response.json())
-    .then(json => {
-        if(json.ok){
-            history.push('/')
+    .then(
+    //     response => response.json())
+    // .then(json => {
+    //     if(json.ok){
+            dispatch(push('/')))
         }
-    })
-}
+//     })
+// }

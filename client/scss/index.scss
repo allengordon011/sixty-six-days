@@ -22,6 +22,7 @@ body {
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 15px 0;
 }
 
@@ -62,6 +63,14 @@ body {
 }
 
 .material-icons.md-48 { font-size: 48px; }
+
+.login-container {
+    text-align: center;
+}
+
+.panel-footer {
+    text-align: center;
+}
 
 .wrapper {
     display: flex;
@@ -225,6 +234,33 @@ button {
     border-radius: 5px;
     border: 0;
     color: white;
+    // font-family: 'Pragati Narrow', sans-serif;
+}
+
+.login {
+    margin: 5px 0;
+    height: 50px;
+    width: 150px;
+    align-self: center;
+    font-size: 1.2em;
+    background-color: #033658;
+}
+
+.login a {
+    color: white;
+}
+
+.signup {
+    margin: 5px 0;
+    height: 50px;
+    width: 150px;
+    align-self: center;
+    font-size: 1.2em;
+    background-color: #033658;
+}
+
+.signup a {
+    color: white;
 }
 
 .buttons-group {
@@ -242,20 +278,6 @@ button {
     background-color: red;
     margin-left: 1em;
     font-size: .6em;
-}
-
-.enter {
-    margin: 25px 0 25px 0;
-    height: 50px;
-    width: 150px;
-    align-self: center;
-    font-size: 1.2em;
-    background-color: #033658;
-}
-
-.enter a {
-    color: white;
-    font-family: 'Pragati Narrow', sans-serif;
 }
 
 .quotes {

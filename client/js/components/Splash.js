@@ -15,8 +15,6 @@ function Splash() {
 
                         <button className="signup"><Link to="/signup">SIGNUP</Link></button>
 
-                        <button className="enter"><Link to="/main">ENTER</Link></button>
-
                         <hr />
                         <p className="tagline">On average, it takes more than two months before a new behavior becomes automatic — 66 days to be exact.</p>
                         <p className="source">Source: "European Journal of Social Psychology"</p>

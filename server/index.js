@@ -13,7 +13,7 @@ const {User} = require('../models/user');
 import Goal from '../models/goal';
 
 
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
@@ -26,12 +26,13 @@ console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 mongoose.Promise = global.Promise;
 
-app.use(cookieParser('galapagos'));
+// app.use(cookieParser('galapagos'));
 app.use(session({
     secret: 'galapagos',
-    resave: true,
-    saveUninitialized: true,
+    // resave: true,
+    // saveUninitialized: true,
     cookie: {
+        secure: false,
         maxAge: (4 * 60 * 60 * 1000)
     }, // 4 hours
 }));
@@ -48,7 +49,11 @@ const {PORT, DATABASE_URL} = require('./database');
 
 //protected endpoint
 app.get('/app', isLoggedIn, function(req, res) {
+    if(req.isAuthenticated() === true) {
     res.status(200).json({user: req.user});
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 //user signup
@@ -64,7 +69,7 @@ app.post('/api/login', passport.authenticate('local-login', {
     failureRedirect: '/login',
     failureFlash: true
 }), function(req, res) {
-    console.log('USER? ', req.user)
+    // console.log('USER: ', req.user)
     console.log('SESSION AT LOGIN? ', req.session)
 
     res.json({user: req.user});
@@ -102,7 +107,7 @@ app.get('/api/user', isLoggedIn, function(req, res, next) {
 //****OLD ENDPOINTS****//
 
 //fetch goals from db
-app.get('/api/goal', isLoggedIn, (req, res, next) => {
+app.get('/api/goal', (req, res, next) => {
   Goal.find({})
   .then((goals) => {
     return res.status(200).json(goals);
@@ -195,9 +200,7 @@ app.delete('/api/goal/:id', (req, res) => {
 //Check if user is logged in
 function isLoggedIn(req, res, next) {
     console.log('isLoggedIn req session', req.session)
-
     console.log('isLoggedIn req', req.isAuthenticated())
-    // console.log('test session user: ', req.session.passport.user)
     if (req.isAuthenticated()) {
         return next();
     } else {
@@ -207,8 +210,8 @@ function isLoggedIn(req, res, next) {
 }
 
 passport.serializeUser(function(user, done) {
-    console.log('Serializing User', user);
-    done(null, user._id);
+    console.log('Serializing User');
+    done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
