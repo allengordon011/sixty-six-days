@@ -1,9 +1,8 @@
 import {combineReducers} from 'redux';
-// import {routerReducer} from 'react-router-redux';
-// , router: routerReducer
 
 import goals from './goals';
 import stickers from './stickers';
+// import routerReducer from './router';
 
 const rootReducer = combineReducers({
     goals, stickers

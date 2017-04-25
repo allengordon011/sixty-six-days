@@ -1,7 +1,8 @@
 import 'isomorphic-fetch';
 // import history from '../history';
 // import {browserHistory} from 'react-router';
-import { push } from 'connected-react-router'
+// import { push } from 'connected-react-router'
+import { push } from 'react-router-redux'
 
 const goalUrl = '/api/goal';
 const userUrl = '/api/user';
@@ -35,11 +36,16 @@ export const fetchStickersSuccess = stickers => ({
   stickers
 })
 
-export const EARN_STICKER = 'EARN_STICKER';
-export const earnSticker = stickers => ({
-  type: EARN_STICKER,
-  stickers
-})
+// export const EARN_STICKER = 'EARN_STICKER';
+export const earnSticker = (sticker, id) => dispatch => {
+  dispatch(updateCompletedGoal(sticker, id))
+  console.log('Sticker earned!');
+}
+
+export const removeSticker = (sticker, id) => dispatch => {
+  dispatch(updateCompletedGoal(sticker, id))
+  console.log('Sticker removed!');
+}
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const loginSuccess = html => ({
@@ -72,6 +78,7 @@ export const fetchGoals = () => dispatch => {
 export const postGoal = (goal) => dispatch => {
   return fetch(goalUrl, {
     method: 'POST',
+    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -93,6 +100,7 @@ export const deleteGoal = (id) => dispatch => {
 export const updateGoal = (goal, id) => dispatch => {
   return fetch(goalUrl + "/" + id, {
     method: 'PUT',
+    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
         },
@@ -105,11 +113,19 @@ export const updateGoal = (goal, id) => dispatch => {
     .catch(err => console.error(err))
 }
 
-export const updateCompletedGoal = (id) => dispatch => {
-  return fetch(goalUrl + "/completed/" + id, {
-      method: 'PUT'
+export const updateCompletedGoal = (sticker, id) => dispatch => {
+    console.log('STICKER COMPL: ', sticker.sticker)
+    return fetch(goalUrl + "/completed/" + id, {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          sticker: sticker.sticker
       })
-      .then(() => dispatch(fetchGoals())
+    })
+    .then(() => dispatch(fetchGoals())
       // .then((response) => response.json())
       // .then((json) => dispatch(fetchGoalsSuccess(json))
     )
@@ -134,6 +150,7 @@ export const fetchStickers = () => dispatch => {
 export const signupUser = (username, password) => dispatch => {
   return fetch('/api/signup', {
     method: 'POST',
+    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -143,9 +160,14 @@ export const signupUser = (username, password) => dispatch => {
     })
   })
   .then(response => response.json())
-  .then(json => console.log('SIGNUP USER RES: ', json)
-    //   dispatch(fetchGoalsSuccess(json))
-  )
+  .then(json => {
+      console.log(json)
+        if(json.user){
+            console.log('go to app page!')
+            history.push('/app')
+        }
+    })
+    .catch(err => console.log('SIGNUP ERROR: ', err))
 }
 
 export const loginUser = (username, password) => dispatch => {
@@ -160,30 +182,40 @@ export const loginUser = (username, password) => dispatch => {
       password
     })
   })
-  .then(response => response.json())
-    //   console.log('LOGIN RES: ', response.json()))
-
-  .then(json => {
-      console.log(json)
-      if(json.user){
-          console.log('go to app page!')
-      }
+  .then(response => {
+      response.json()
   })
-  // .then(dispatch(loginUserSuccess()))
-  .then(dispatch(push('/app')))
+  .then(json => {
+      if(json){
+          console.log('go to app page!', json.redirectURI)
+          window.location = json.redirectURI
+      }
+  //   //   dispatch(handleLocationChange(json.redirectUrl))
+})
+  // .then(history.push('/app'))
   .catch(err => console.log('LOGIN ERROR: ', err))
 }
 
-export const logoutUser = () => {
+export const logoutUser = () => dispatch => {
+    console.log('LOG ME OUT!')
     fetch('/api/logout', {
         method: 'get'
     }).then(
     console.log('fired off logoutUser event'))
-    .then(
+    .then(dispatch(push('/')))
+    .catch(err => console.log('LOGOUT ERROR: ', err))
+
+    // .then(
     //     response => response.json())
     // .then(json => {
     //     if(json.ok){
-            dispatch(push('/')))
-        }
+            // dispatch(push('/')))
+}
 //     })
 // }
+
+export const LOCATION_CHANGE = "LOCATION_CHANGE";
+export const handleLocationChange = location => ({
+      type: LOCATION_CHANGE,
+      location
+  })

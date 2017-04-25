@@ -50,10 +50,19 @@ const {PORT, DATABASE_URL} = require('./database');
 //protected endpoint
 app.get('/app', isLoggedIn, function(req, res) {
     if(req.isAuthenticated() === true) {
-    res.status(200).json({user: req.user});
+        // console.log('lets go!'. req.url)
+        res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
+    // res.status(200).json({user: req.user});
     } else {
         res.sendStatus(403);
     }
+});
+
+app.get('/login', function(req, res) {
+        // console.log('lets go!'. req.url)
+        res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
+    // res.status(200).json({user: req.user});
+
 });
 
 //user signup
@@ -71,15 +80,17 @@ app.post('/api/login', passport.authenticate('local-login', {
 }), function(req, res) {
     // console.log('USER: ', req.user)
     console.log('SESSION AT LOGIN? ', req.session)
+    // res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
 
-    res.json({user: req.user});
+    res.status(200).json({user: req.user, redirectURI: "/app"});
+
 })
 
 //user logout
 app.get('/api/logout', function(req, res) {
     req.logout();
     req.session.destroy();
-    res.json({ok: true});
+    res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
 });
 
 //user delete
@@ -107,7 +118,7 @@ app.get('/api/user', isLoggedIn, function(req, res, next) {
 //****OLD ENDPOINTS****//
 
 //fetch goals from db
-app.get('/api/goal', (req, res, next) => {
+app.get('/api/goal', isLoggedIn, (req, res, next) => {
   Goal.find({})
   .then((goals) => {
     return res.status(200).json(goals);
@@ -160,17 +171,16 @@ app.put('/api/goal/:id', (req, res) => {
 
 //change a goal status to completed
 app.put('/api/goal/completed/:id', (req, res) => {
-
-  Goal.findOne({_id: req.params.id}, function(err,obj) {
-  Goal.findOneAndUpdate(
-    {_id: req.params.id},
-    {$set:{completed: !obj.completed}},
-    {upsert: true},
-    function(error){
-      if (error) {
-        console.error(error);
-        res.sendStatus(400);
-      }
+    Goal.findOne({_id: req.params.id}, function(err,obj) {
+        Goal.findOneAndUpdate(
+            {_id: req.params.id},
+            {$set:{completed: !obj.completed, sticker: req.body.sticker}},
+            {upsert: true},
+            function(error){
+              if (error) {
+                console.error(error);
+                res.sendStatus(400);
+          }
     });
 
       Goal.find({}, (err, goal) => {
@@ -205,7 +215,7 @@ function isLoggedIn(req, res, next) {
         return next();
     } else {
         return res.status(403).json({message: 'User Not Logged In'});
-        // return res.redirect('/login');
+        return res.redirect('/login');
     }
 }
 

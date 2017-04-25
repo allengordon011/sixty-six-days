@@ -4,7 +4,7 @@ const initialState = {
   users: []
 };
 
-const users = (state=initialState, action) => {
+const usersReducer = (state=initialState, action) => {
 
   if (action.type === actions.LOGIN_SUCCESS) {
       console.log('Login success')
@@ -20,4 +20,4 @@ const users = (state=initialState, action) => {
   return state;
 }
 
-export default users;
+export default usersReducer;

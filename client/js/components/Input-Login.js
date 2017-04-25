@@ -1,14 +1,24 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
+import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router'
+
 
 class InputLogin extends React.Component {
     constructor(props) {
         super(props);
-        this.postUser = this.postUser.bind(this);
+        // }
+        // this.state = {
+        //     redirectTo: null
+        // }
+        this.handleLogin = this.handleLogin.bind(this);
     }
-    postUser(event) {
+
+    handleLogin(event) {
         event.preventDefault();
+        // this.setState({ redirectTo: '/app' });
+
         const username = this.userInput.value;
         const password = this.pwInput.value;
         this.props.dispatch(actions.loginUser(username, password))
@@ -19,8 +29,11 @@ class InputLogin extends React.Component {
 
   render() {
         return (
-            <div className="container">
-                <form className="input-form" onSubmit={this.postUser}>
+            // this.state.redirectTo ?
+            // <Redirect to={{ pathname: this.state.redirectTo }} /> :
+
+                <div className="container">
+                <form className="input-form" onSubmit={this.handleLogin}>
                     <div>
                         <label htmlFor="usernameInput"> Username</label>
                         <div>
@@ -34,11 +47,15 @@ class InputLogin extends React.Component {
                     <button type="submit">Submit</button>
                 </form>
             </div>
-        )
+            )
+
     }
 }
 
+// InputLogin.propTypes = {
+//   history: PropTypes.object.isRequired
+// }
 
-// const mapStateToProps = (state, props) => ({goals: state.goals})
+// const mapStateToProps = (state, props) => ({location: state.location})
 
 export default connect()(InputLogin)

@@ -3,11 +3,13 @@ import * as actions from '../actions/actions';
 const initialState = {
   stickers: [{
       sticker: '',
-      earned: false
+    //   earned: false,
+    //   goalId: '',
+      loading: true
     }]
 };
 
-const stickers = (state=initialState, action) => {
+const stickersReducer = (state=initialState, action) => {
         switch(action.type) {
             case actions.FETCH_STICKERS_REQUEST: {
               console.log('Fetch stickers request');
@@ -18,17 +20,18 @@ const stickers = (state=initialState, action) => {
                 console.log('Fetch stickers success');
                 return {
                     ...state,
-                  stickers: action.stickers
+                  stickers: action.stickers,
+                  loading: false
               }
             }
 
-            case actions.EARN_STICKER: {
-                console.log('Sticker earned!');
-                return {
-                    ...state,
-                  stickers: action.stickers
-              }
-            }
+            // case actions.EARN_STICKER: {
+            //     console.log('Sticker earned!');
+            //     return {
+            //         ...state,
+            //       stickers: action.stickers
+            //   }
+            // }
 
             case actions.FETCH_ERROR: {
                 console.log('Fetch error!');
@@ -43,4 +46,4 @@ const stickers = (state=initialState, action) => {
         }
     }
 
-export default stickers;
+export default stickersReducer;

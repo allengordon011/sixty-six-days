@@ -5,9 +5,9 @@ import * as actions from '../actions/actions';
 class InputSignup extends React.Component {
     constructor(props) {
         super(props);
-        this.postUser = this.postUser.bind(this);
+        this.handleSignup = this.handleSignup.bind(this);
     }
-    postUser(event) {
+    handleSignup(event) {
         event.preventDefault();
         const username = this.userInput.value;
         const password = this.pwInput.value;
@@ -20,7 +20,7 @@ class InputSignup extends React.Component {
   render() {
         return (
             <div className="container">
-                <form className="input-form" onSubmit={this.postUser}>
+                <form className="input-form" onSubmit={this.handleSignup}>
                     <div>
                         <label htmlFor="usernameInput"> Username</label>
                         <div>
