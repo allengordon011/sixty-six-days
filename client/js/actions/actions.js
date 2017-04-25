@@ -1,8 +1,8 @@
 import 'isomorphic-fetch';
-// import history from '../history';
+import history from '../history';
 // import {browserHistory} from 'react-router';
 // import { push } from 'connected-react-router'
-import { push } from 'react-router-redux'
+// import { push } from 'react-router-redux'
 
 const goalUrl = '/api/goal';
 const userUrl = '/api/user';
@@ -47,10 +47,26 @@ export const removeSticker = (sticker, id) => dispatch => {
   console.log('Sticker removed!');
 }
 
+export const SHOW_STICKERS = 'SHOW_STICKERS';
+export const showStickers = () => ({
+  type: SHOW_STICKERS
+})
+
+export const HIDE_STICKERS = 'HIDE_STICKERS';
+export const hideStickers = () => ({
+  type: HIDE_STICKERS
+})
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const loginSuccess = html => ({
-    type: LOGIN_SUCESS,
-    html
+export const loginSuccess = () => ({
+    type: LOGIN_SUCCESS
+
+})
+
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const logoutSuccess = () => ({
+    type: LOGOUT_SUCCESS
+
 })
 
 export const fetchGoals = () => dispatch => {
@@ -161,13 +177,9 @@ export const signupUser = (username, password) => dispatch => {
   })
   .then(response => response.json())
   .then(json => {
-      console.log(json)
-        if(json.user){
-            console.log('go to app page!')
-            history.push('/app')
-        }
-    })
-    .catch(err => console.log('SIGNUP ERROR: ', err))
+            dispatch(loginSuccess())
+        })
+        .catch(err => console.log('SIGNUP ERROR: ', err))
 }
 
 export const loginUser = (username, password) => dispatch => {
@@ -183,36 +195,25 @@ export const loginUser = (username, password) => dispatch => {
     })
   })
   .then(response => {
-      response.json()
+      return response.json()
   })
   .then(json => {
-      if(json){
-          console.log('go to app page!', json.redirectURI)
-          window.location = json.redirectURI
-      }
-  //   //   dispatch(handleLocationChange(json.redirectUrl))
+          console.log('go to app page!', json)
+          dispatch(loginSuccess())
 })
-  // .then(history.push('/app'))
   .catch(err => console.log('LOGIN ERROR: ', err))
 }
 
 export const logoutUser = () => dispatch => {
-    console.log('LOG ME OUT!')
     fetch('/api/logout', {
-        method: 'get'
+        method: 'get',
+        credentials: 'same-origin'
     }).then(
     console.log('fired off logoutUser event'))
-    .then(dispatch(push('/')))
+    .then(dispatch(logoutSuccess()))
     .catch(err => console.log('LOGOUT ERROR: ', err))
 
-    // .then(
-    //     response => response.json())
-    // .then(json => {
-    //     if(json.ok){
-            // dispatch(push('/')))
 }
-//     })
-// }
 
 export const LOCATION_CHANGE = "LOCATION_CHANGE";
 export const handleLocationChange = location => ({

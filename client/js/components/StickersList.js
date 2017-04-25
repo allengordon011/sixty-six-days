@@ -17,7 +17,6 @@ class StickersList extends React.Component {
         let earnedStickers = goalsArray.length <= 1
             ? "Loading..."
             : goalsArray.map((goal, i) => {
-                console.log('STICKER? ', goal.sticker)
                 if (goal.completed == true) {
                     count++;
                     return (
@@ -27,22 +26,24 @@ class StickersList extends React.Component {
                     )
                 }
             })
-            console.log('COUNT: ', count)
-
-            if(count > 0){
-        return (
-            <div>
-                <h3 className="stickers-earned">Stickers Earned</h3>
-                {earnedStickers}
-            </div>
-        );
-    } else { return (
-        <div>
-            <h3 className="stickers-earned">Stickers Earned</h3>
-            <p className="stickers-earned-subtitle">Complete your goals to earn rewards!</p>
-        </div>
-            )
+        if (this.props.stickers.hidden === false) {
+            if (count > 0) {
+                return (
+                    <div>
+                        {earnedStickers}
+                    </div>
+                );
+            } else {
+                return (
+                    <div>
+                        <p className="stickers-earned-subtitle">Complete your goals to earn rewards!</p>
+                    </div>
+                )
+            }
+        } else {
+            return <div></div>
         }
+
     }
 }
 

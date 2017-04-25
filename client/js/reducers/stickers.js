@@ -5,7 +5,8 @@ const initialState = {
       sticker: '',
     //   earned: false,
     //   goalId: '',
-      loading: true
+      loading: true,
+      hidden: true
     }]
 };
 
@@ -32,7 +33,30 @@ const stickersReducer = (state=initialState, action) => {
             //       stickers: action.stickers
             //   }
             // }
+            case actions.SHOW_STICKERS:
+                {
+                    console.log('Show stickers');
+                    return {
+                        ...state,
+                        hidden: false
+                    }
+                }
+            // case actions.FETCH_STICKERS_SUCCESS:
+            //     {
+            //         console.log('Fetch stickers success');
+            //         return {
+            //             ...state,
+            //             savedRecipes: action.savedRecipes
+            //         }
+            //     }
+            case actions.HIDE_STICKERS: {
+                console.log('Hide stickers');
 
+                return {
+                    ...state,
+                    hidden: true
+                }
+            }
             case actions.FETCH_ERROR: {
                 console.log('Fetch error!');
                 return {

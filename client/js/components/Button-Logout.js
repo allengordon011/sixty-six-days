@@ -8,7 +8,6 @@ class LogoutButton extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick(){
-        console.log('CLICKED!')
         this.props.dispatch(actions.logoutUser());
     }
     render(){

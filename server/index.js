@@ -50,39 +50,36 @@ const {PORT, DATABASE_URL} = require('./database');
 //protected endpoint
 app.get('/app', isLoggedIn, function(req, res) {
     if(req.isAuthenticated() === true) {
-        // console.log('lets go!'. req.url)
         res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
-    // res.status(200).json({user: req.user});
     } else {
         res.sendStatus(403);
     }
 });
 
 app.get('/login', function(req, res) {
-        // console.log('lets go!'. req.url)
         res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
-    // res.status(200).json({user: req.user});
+
+});
+
+app.get('/signup', function(req, res) {
+        res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
 
 });
 
 //user signup
 app.post('/api/signup', passport.authenticate('local-signup', {
-    successRedirect: '/app',
-    failureRedirect: '/signup',
     failureFlash: true
-}))
+}), function(req, res) {
+    console.log('SESSION AT SIGNUP? ', req.session)
+    res.status(201).json({user: req.user});
+})
 
 //user login
 app.post('/api/login', passport.authenticate('local-login', {
-    // successRedirect: '/app',
-    failureRedirect: '/login',
     failureFlash: true
 }), function(req, res) {
-    // console.log('USER: ', req.user)
     console.log('SESSION AT LOGIN? ', req.session)
-    // res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
-
-    res.status(200).json({user: req.user, redirectURI: "/app"});
+    res.status(200).json({user: req.user});
 
 })
 
@@ -90,7 +87,7 @@ app.post('/api/login', passport.authenticate('local-login', {
 app.get('/api/logout', function(req, res) {
     req.logout();
     req.session.destroy();
-    res.sendFile(path.resolve(process.env.CLIENT_PATH, 'index.html'))
+    res.json({redirectURI: '/'});
 });
 
 //user delete

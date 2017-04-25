@@ -1,36 +1,29 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import * as actions from '../actions/actions';
-import { withRouter } from 'react-router-dom';
-import { Redirect } from 'react-router'
-
 
 class InputLogin extends React.Component {
     constructor(props) {
         super(props);
-        // }
-        // this.state = {
-        //     redirectTo: null
-        // }
         this.handleLogin = this.handleLogin.bind(this);
     }
-
     handleLogin(event) {
         event.preventDefault();
-        // this.setState({ redirectTo: '/app' });
-
         const username = this.userInput.value;
         const password = this.pwInput.value;
         this.props.dispatch(actions.loginUser(username, password))
-        console.log('fired off loginUser event', username, password)
+        console.log('fired off loginUser event')
         this.userInput.value = '';
         this.pwInput.value = '';
+
     }
 
   render() {
+    //   console.log(this.props.isLoggedIn)
         return (
-            // this.state.redirectTo ?
-            // <Redirect to={{ pathname: this.state.redirectTo }} /> :
+            this.props.isLoggedIn ?
+            <Redirect to={{ pathname: '/app' }} /> :
 
                 <div className="container">
                 <form className="input-form" onSubmit={this.handleLogin}>
@@ -44,7 +37,7 @@ class InputLogin extends React.Component {
                             <input type="text" className="input-input" id="pwInput" ref={input => this.pwInput = input} placeholder="password"/>
                         </div>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" formTarget="_self" href="/app">Login</button>
                 </form>
             </div>
             )
@@ -56,6 +49,6 @@ class InputLogin extends React.Component {
 //   history: PropTypes.object.isRequired
 // }
 
-// const mapStateToProps = (state, props) => ({location: state.location})
+const mapStateToProps = (state, props) => ({isLoggedIn: state.users.isLoggedIn})
 
-export default connect()(InputLogin)
+export default connect(mapStateToProps)(InputLogin)

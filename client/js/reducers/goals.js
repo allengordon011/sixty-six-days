@@ -17,14 +17,6 @@ const goalsReducer = (state = initialState, action) => {
                     loading: false
                 }
             }
-        // case actions.EARN_STICKER:
-        //     {
-        //         console.log('Sticker earned!');
-        //         actions.dispatch(updateCompletedGoal())
-        //         return {
-        //             ...state,
-        //         }
-        //     }
         case actions.FETCH_ERROR:
             {
                 return {
