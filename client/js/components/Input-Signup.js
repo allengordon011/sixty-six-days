@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import * as actions from '../actions/actions';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import AlertContainer from 'react-alert';
 
 class InputSignup extends React.Component {
     constructor(props) {
@@ -12,12 +13,14 @@ class InputSignup extends React.Component {
     }
     handleSignup(event) {
         event.preventDefault();
-        const username = this.userInput.value;
-        const password = this.pwInput.value;
-        this.props.dispatch(actions.signupUser(username, password))
-        console.log('fired off signupUser event', username, password)
-        this.userInput.value = '';
-        this.pwInput.value = '';
+        const username = this.userInput.getValue();
+        const password = this.pwInput.getValue();
+        if(!username){
+            this.showAlert();
+        } else { this.props.dispatch(actions.signupUser(username, password));
+        console.log('fired off signupUser event') }
+        event.target.username.value = '';
+        event.target.password.value = '';
     }
 
   render() {
@@ -28,17 +31,14 @@ class InputSignup extends React.Component {
                 <div className="container">
                     <p className="demo-user">Demo user available on the 'Login' page.</p>
                     <form className="input-form" onSubmit={this.handleSignup}>
-                        <div>
-                            <label htmlFor="usernameInput"> Username</label>
-                            <div>
-                                <TextField type="text" className="input-input" id="usernameInput" inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.userInput = input} placeholder="username or email"/>
-                            </div>
-                            <label htmlFor="pwInput"> Password</label>
-                            <div>
-                                <TextField type="password" className="input-input" id="pwInput" inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.pwInput = input} placeholder="password"/>
-                            </div>
+                        <div className="inputs">
+
+                                <TextField type="text" hintText="username or email" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.userInput = input} />
+
+                                <TextField type="password" hintText="choose a secure password" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.pwInput = input} />
+
                         </div>
-                        <RaisedButton className="enter" type="submit">Signup</RaisedButton>
+                        <RaisedButton className="enter" primary={true} type="submit">Signup</RaisedButton>
                     </form>
                 </div>
         )

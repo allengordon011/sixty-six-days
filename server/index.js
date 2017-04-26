@@ -25,7 +25,7 @@ app.use(express.static(process.env.CLIENT_PATH));
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 mongoose.Promise = global.Promise;
-
+ 
 // app.use(cookieParser('galapagos'));
 app.use(session({
     secret: 'galapagos',

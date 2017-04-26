@@ -195,6 +195,7 @@ export const loginUser = (username, password) => dispatch => {
     })
   })
   .then(response => {
+      console.log('LOGIN RES: ', response)
       return response.json()
   })
   .then(json => {
