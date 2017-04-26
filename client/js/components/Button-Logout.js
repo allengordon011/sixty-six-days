@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class LogoutButton extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class LogoutButton extends React.Component {
     render(){
         return (
             <div className="logout-container">
-                <button className="logout-button" onClick={this.handleClick}>Logout</button>
+                <RaisedButton className="logout-button" onClick={this.handleClick}>Logout</RaisedButton>
             </div>
         )
     }

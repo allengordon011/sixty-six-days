@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import * as actions from '../actions/actions';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class InputLogin extends React.Component {
     constructor(props) {
@@ -26,19 +28,20 @@ class InputLogin extends React.Component {
             <Redirect to={{ pathname: '/app' }} /> :
 
                 <div className="container">
-                <form className="input-form" onSubmit={this.handleLogin}>
-                    <div>
-                        <label htmlFor="usernameInput"> Username</label>
+                    <p className="demo-user">For demonstration purposes: <br /> username: demo password: demo</p>
+                    <form className="input-form" onSubmit={this.handleLogin}>
                         <div>
-                            <input type="text" className="input-input" id="usernameInput" ref={input => this.userInput = input} placeholder="username or email"/>
+                            <label htmlFor="usernameInput"> Username</label>
+                            <div>
+                                <TextField type="text" className="input-input" id="usernameInput" hintText="username or email" inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.userInput = input}/>
+                            </div>
+                            <label htmlFor="pwInput"> Password</label>
+                            <div>
+                                <TextField type="password" className="input-input" id="pwInput" hintText="choose a secure password" inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.pwInput = input}/>
+                            </div>
                         </div>
-                        <label htmlFor="pwInput"> Password</label>
-                        <div>
-                            <input type="text" className="input-input" id="pwInput" ref={input => this.pwInput = input} placeholder="password"/>
-                        </div>
-                    </div>
-                    <button type="submit" formTarget="_self" href="/app">Login</button>
-                </form>
+                        <RaisedButton className="enter" type="submit" formTarget="_self" href="/app">Login</RaisedButton>
+                    </form>
             </div>
             )
 

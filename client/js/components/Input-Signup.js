@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import * as actions from '../actions/actions';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class InputSignup extends React.Component {
     constructor(props) {
@@ -24,18 +26,19 @@ class InputSignup extends React.Component {
             <Redirect to={{ pathname: '/app' }} /> :
 
                 <div className="container">
+                    <p className="demo-user">Demo user available on the 'Login' page.</p>
                     <form className="input-form" onSubmit={this.handleSignup}>
                         <div>
                             <label htmlFor="usernameInput"> Username</label>
                             <div>
-                                <input type="text" className="input-input" id="usernameInput" ref={input => this.userInput = input} placeholder="username or email"/>
+                                <TextField type="text" className="input-input" id="usernameInput" inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.userInput = input} placeholder="username or email"/>
                             </div>
                             <label htmlFor="pwInput"> Password</label>
                             <div>
-                                <input type="text" className="input-input" id="pwInput" ref={input => this.pwInput = input} placeholder="password"/>
+                                <TextField type="password" className="input-input" id="pwInput" inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.pwInput = input} placeholder="password"/>
                             </div>
                         </div>
-                        <button type="submit">Submit</button>
+                        <RaisedButton className="enter" type="submit">Signup</RaisedButton>
                     </form>
                 </div>
         )

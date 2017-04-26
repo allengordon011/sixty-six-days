@@ -9,7 +9,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: -webkit-linear-gradient(top, rgba(6,149,201,1) 0%, rgba(1,84,117,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: url('../client/img/sand-dunes.jpg')
 }
 
 .app {
@@ -157,7 +157,7 @@ label {
 }
 
 form {
-    margin: 15px 0 16px 50px;
+    margin: 25px 0;
 }
 
 input {
@@ -166,8 +166,7 @@ input {
     border-radius: 5px;
     padding: 5px;
     margin: 5px 0 5px 0;
-    text-align: left;
-    min-width: 300px;
+    text-align: center;
     font-size: .9em;
 }
 
@@ -238,30 +237,13 @@ button {
     // font-family: 'Pragati Narrow', sans-serif;
 }
 
-.login {
-    margin: 5px 0;
-    height: 50px;
-    width: 150px;
-    align-self: center;
-    font-size: 1.2em;
-    background-color: #033658;
-}
-
-.login a {
-    color: white;
-}
-
-.signup {
-    margin: 5px 0;
-    height: 50px;
-    width: 150px;
-    align-self: center;
-    font-size: 1.2em;
-    background-color: #033658;
-}
-
-.signup a {
-    color: white;
+.enter {
+    margin: 25px 0 0;
+    // height: 50px;
+    // width: 150px;
+    // align-self: center;
+    // font-size: 1.2em;
+    // background-color: #033658;
 }
 
 .buttons-group {

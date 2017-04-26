@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
+import TextField from 'material-ui/TextField';
 
 class Input extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class Input extends React.Component {
                     <div>
                         <label htmlFor="inputSuccess">New Goal</label>
                         <div>
-                            <input type="text" className="input-input" id="inputSuccess" ref={input => this.textInput = input} placeholder="type your new awesome goal and press enter"/>
+                            <TextField type="text" className="input-input" id="inputSuccess" inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.textInput = input} placeholder="type your new awesome goal and press enter"/>
                         </div>
                     </div>
                 </form>

@@ -11,8 +11,6 @@ import * as actions from './actions/actions';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// export default createStore(rootReducer, defaultState,  composeEnhancers(applyMiddleware(thunk)));
-
 const store = createStore(rootReducer,   composeEnhancers(applyMiddleware(thunk)));
 
 
