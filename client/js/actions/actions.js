@@ -1,6 +1,11 @@
-import 'isomorphic-fetch'
+import 'isomorphic-fetch';
+import history from '../history';
+// import {browserHistory} from 'react-router';
+// import { push } from 'connected-react-router'
+// import { push } from 'react-router-redux'
 
-const url = `/api/home`
+const goalUrl = '/api/goal';
+const userUrl = '/api/user';
 
 export const FETCH_GOALS_REQUEST = 'FETCH_GOALS_REQUEST';
 export const fetchGoalsRequest = () => ({
@@ -31,15 +36,43 @@ export const fetchStickersSuccess = stickers => ({
   stickers
 })
 
-export const EARN_STICKER = 'EARN_STICKER';
-export const earnSticker = stickers => ({
-  type: EARN_STICKER,
-  stickers
+// export const EARN_STICKER = 'EARN_STICKER';
+export const earnSticker = (sticker, id) => dispatch => {
+  dispatch(updateCompletedGoal(sticker, id))
+  console.log('Sticker earned!');
+}
+
+export const removeSticker = (sticker, id) => dispatch => {
+  dispatch(updateCompletedGoal(sticker, id))
+  console.log('Sticker removed!');
+}
+
+export const SHOW_STICKERS = 'SHOW_STICKERS';
+export const showStickers = () => ({
+  type: SHOW_STICKERS
 })
 
+export const HIDE_STICKERS = 'HIDE_STICKERS';
+export const hideStickers = () => ({
+  type: HIDE_STICKERS
+})
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const loginSuccess = () => ({
+    type: LOGIN_SUCCESS
+
+})
+
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const logoutSuccess = () => ({
+    type: LOGOUT_SUCCESS
+
+})
 
 export const fetchGoals = () => dispatch => {
-  return fetch(url)
+  return fetch(goalUrl, {
+      credentials: 'same-origin'
+  })
   // .then(dispatch(fetchRequest()))
   .then(response => {
     if (!response.ok) {
@@ -59,8 +92,9 @@ export const fetchGoals = () => dispatch => {
 };
 
 export const postGoal = (goal) => dispatch => {
-  return fetch(url, {
+  return fetch(goalUrl, {
     method: 'POST',
+    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -73,15 +107,16 @@ export const postGoal = (goal) => dispatch => {
 }
 
 export const deleteGoal = (id) => dispatch => {
-  return fetch(url + "/" + id, {
+  return fetch(goalUrl + "/" + id, {
     method: 'DELETE'
   })
   .then(() => dispatch(fetchGoals()))
 }
 
 export const updateGoal = (goal, id) => dispatch => {
-  return fetch(url + "/" + id, {
+  return fetch(goalUrl + "/" + id, {
     method: 'PUT',
+    credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
         },
@@ -94,11 +129,19 @@ export const updateGoal = (goal, id) => dispatch => {
     .catch(err => console.error(err))
 }
 
-export const updateCompletedGoal = (id) => dispatch => {
-  return fetch(url + "/completed/" + id, {
-      method: 'PUT'
+export const updateCompletedGoal = (sticker, id) => dispatch => {
+    console.log('STICKER COMPL: ', sticker.sticker)
+    return fetch(goalUrl + "/completed/" + id, {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          sticker: sticker.sticker
       })
-      .then(() => dispatch(fetchGoals())
+    })
+    .then(() => dispatch(fetchGoals())
       // .then((response) => response.json())
       // .then((json) => dispatch(fetchGoalsSuccess(json))
     )
@@ -119,3 +162,61 @@ export const fetchStickers = () => dispatch => {
     })
     .catch(err => console.error(err))
 }
+
+export const signupUser = (username, password) => dispatch => {
+  return fetch('/api/signup', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username,
+      password
+    })
+  })
+  .then(response => response.json())
+  .then(json => {
+            dispatch(loginSuccess())
+        })
+        .catch(err => console.log('SIGNUP ERROR: ', err))
+}
+
+export const loginUser = (username, password) => dispatch => {
+  return fetch('/api/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify({
+      username,
+      password
+    })
+  })
+  .then(response => {
+      return response.json()
+  })
+  .then(json => {
+          console.log('go to app page!', json)
+          dispatch(loginSuccess())
+})
+  .catch(err => console.log('LOGIN ERROR: ', err))
+}
+
+export const logoutUser = () => dispatch => {
+    fetch('/api/logout', {
+        method: 'get',
+        credentials: 'same-origin'
+    }).then(
+    console.log('fired off logoutUser event'))
+    .then(dispatch(logoutSuccess()))
+    .catch(err => console.log('LOGOUT ERROR: ', err))
+
+}
+
+export const LOCATION_CHANGE = "LOCATION_CHANGE";
+export const handleLocationChange = location => ({
+      type: LOCATION_CHANGE,
+      location
+  })

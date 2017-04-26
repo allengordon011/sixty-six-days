@@ -9,7 +9,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: -webkit-linear-gradient(top, rgba(6,149,201,1) 0%, rgba(1,84,117,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: url('../client/img/sand-dunes.jpg')
 }
 
 .app {
@@ -22,6 +22,7 @@ body {
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 15px 0;
 }
 
@@ -62,6 +63,14 @@ body {
 }
 
 .material-icons.md-48 { font-size: 48px; }
+
+.login-container {
+    text-align: center;
+}
+
+.panel-footer {
+    text-align: center;
+}
 
 .wrapper {
     display: flex;
@@ -148,7 +157,7 @@ label {
 }
 
 form {
-    margin: 15px 0 16px 50px;
+    margin: 25px 0;
 }
 
 input {
@@ -157,8 +166,7 @@ input {
     border-radius: 5px;
     padding: 5px;
     margin: 5px 0 5px 0;
-    text-align: left;
-    min-width: 300px;
+    text-align: center;
     font-size: .9em;
 }
 
@@ -183,7 +191,7 @@ input {
 }
 
 .calendar {
-    font-size: .7em;
+    font-size: .8em;
     color: grey;
     text-align: left;
     margin: 7px;
@@ -212,6 +220,7 @@ ul {
 a {
     text-decoration: none;
     font-family: 'Dosis', sans-serif;
+    color: #17E9EE;
 }
 
 hr {
@@ -225,6 +234,16 @@ button {
     border-radius: 5px;
     border: 0;
     color: white;
+    // font-family: 'Pragati Narrow', sans-serif;
+}
+
+.enter {
+    margin: 25px 0 0;
+    // height: 50px;
+    // width: 150px;
+    // align-self: center;
+    // font-size: 1.2em;
+    // background-color: #033658;
 }
 
 .buttons-group {
@@ -242,20 +261,6 @@ button {
     background-color: red;
     margin-left: 1em;
     font-size: .6em;
-}
-
-.enter {
-    margin: 25px 0 25px 0;
-    height: 50px;
-    width: 150px;
-    align-self: center;
-    font-size: 1.2em;
-    background-color: #033658;
-}
-
-.enter a {
-    color: white;
-    font-family: 'Pragati Narrow', sans-serif;
 }
 
 .quotes {

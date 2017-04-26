@@ -1,23 +1,33 @@
 import * as actions from '../actions/actions';
 
 const initialState = {
-  goals: []
+    goals: [],
+    loading: true
 };
 
-const goals = (state=initialState, action) => {
+const goalsReducer = (state = initialState, action) => {
 
-  if (action.type === actions.FETCH_GOALS_SUCCESS) {
-      console.log('Fetch goals success')
-    return {...state,
-      goals: action.goals
+    switch (action.type) {
+        case actions.FETCH_GOALS_SUCCESS:
+            {
+                console.log('Fetch goals success')
+                return {
+                    ...state,
+                    goals: action.goals,
+                    loading: false
+                }
+            }
+        case actions.FETCH_ERROR:
+            {
+                return {
+                    ...state,
+                    goals: action.error
+                }
+        }
+
+        default:
+            return state;
     }
-  }
-  if (action.type === actions.FETCH_ERROR) {
-    return {...state,
-      goals: action.error,
-    }
-  }
-  return state;
 }
 
-export default goals;
+export default goalsReducer;
