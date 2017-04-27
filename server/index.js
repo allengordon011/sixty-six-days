@@ -212,7 +212,7 @@ function isLoggedIn(req, res, next) {
         return next();
     } else {
         return res.status(403).json({message: 'User Not Logged In'});
-        return res.redirect('/login');
+        // return res.redirect('/login');
     }
 }
 
@@ -235,7 +235,7 @@ passport.use('local-signup', new LocalStrategy(function(username, password, done
         let user = _user;
         if (user) {
             console.error('User already exists');
-            return done(null, false, { message: 'User already exists' });
+            return done(null, false);
         }
         // console.log('Creating user');
         return User.hashPassword(password)
@@ -245,7 +245,7 @@ passport.use('local-signup', new LocalStrategy(function(username, password, done
             done(null, user);
         });
     })
-    .catch(error => {
+    .catch(function () {
          console.error("Signup Rejected");
     });
 }));
@@ -265,7 +265,7 @@ passport.use('local-login', new LocalStrategy(function(username, password, done)
             return done(null, false, {message: 'Invalid Password'});
         } else {
             console.log('Valid Password');
-            return done(null, user);
+            return done(null, user, {message: 'Valid Password'});
         }
     })
     .catch(function () {

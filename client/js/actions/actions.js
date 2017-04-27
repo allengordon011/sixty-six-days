@@ -196,7 +196,7 @@ export const signupUser = (username, password) => dispatch => {
         })
         .catch(err => {
             dispatch(loginFail());
-            dispatch(loginError());
+            dispatch(loginError(err));
             console.error('SIGNUP ERROR: ', err);
         })
 }
@@ -223,7 +223,8 @@ export const loginUser = (username, password) => dispatch => {
   })
   .catch(err => {
       dispatch(loginFail());
-      console.error('LOGIN ERROR: ', err);
+      dispatch(loginError(err));
+      return console.error('LOGIN ERROR: ', err);
   })
 }
 

@@ -18,7 +18,7 @@ class Input extends React.Component {
     }
     postGoal(event) {
         event.preventDefault();
-        const goal = this.textInput.value;
+        const goal = event.target.input.value;
         if(!goal){
             this.showAlert();
         } else { this.props.dispatch(actions.postGoal(goal))
@@ -40,7 +40,7 @@ class Input extends React.Component {
                 <form className="input-form" onSubmit={this.postGoal}>
                     <h3>New Goal</h3>
                     <div>
-                        <TextField type="text" name="input" hint="type your new awesome goal and press enter" inputStyle={{ width: "350px" }} ref={input => this.textInput = input} />
+                        <TextField type="text" name="input" style = {{width: 350}} hintText="type your new awesome goal and press enter" ref={input => this.textInput = input} />
                     </div>
                 </form>
             </div>

@@ -153,21 +153,19 @@ label {
 form {
   margin: 25px 0; }
 
-.inputs {
-  display: flex; }
-
 .goal-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
-  max-width: 550px; }
+  width: 350px; }
 
 .goal-box {
   display: flex;
   border: 1px solid grey;
   margin: 0;
   padding: 10px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  max-width: 350px; }
 
 .goal-text {
   vertical-align: bottom; }
@@ -177,6 +175,10 @@ form {
   color: grey;
   text-align: left;
   margin: 7px; }
+
+.goal-footer {
+  display: flex;
+  flex-direction: row; }
 
 .sticker {
   border: 1px solid darkgrey;
