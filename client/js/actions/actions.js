@@ -139,8 +139,6 @@ export const updateGoal = (goal, id) => dispatch => {
         goal
         })
       })
-    //   .then(json => dispatch(fetchGoalsSuccess(json))
-    // )
     .catch(err => console.error(err))
 }
 
@@ -156,16 +154,11 @@ export const updateCompletedGoal = (sticker, id) => dispatch => {
           sticker: sticker.sticker
       })
     })
-    .then(() => dispatch(fetchGoals())
-      // .then((response) => response.json())
-      // .then((json) => dispatch(fetchGoalsSuccess(json))
-    )
+    .then(() => dispatch(fetchGoals()))
     .catch(err => console.error(err))
 }
 
 export const fetchStickers = () => dispatch => {
-    // return (dispatch) => dispatch(fetchStickersRequest)
-
     fetch('https://api.giphy.com/v1/gifs/search?q=success&api_key=dc6zaTOxFJmzC', {
     method: 'get'
     })

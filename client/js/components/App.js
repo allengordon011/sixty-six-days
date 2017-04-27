@@ -5,13 +5,16 @@ import StickersList from './StickersList';
 import Quote from './Quote';
 import LogoutButton from './Button-Logout';
 import { Redirect } from 'react-router'
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
     constructor(props){
         super(props)
     }
     render() {
+        console.log('APP REQ USER', this.props)
+        // console.log('APP REQ USER', req.session)
+
         return (
             !this.props.isLoggedIn ?
             <Redirect to={{ pathname: '/' }} /> :

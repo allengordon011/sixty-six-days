@@ -7,17 +7,10 @@ import FlatButton from 'material-ui/FlatButton';
 class GoalsList extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     goals: []
-        // }
     }
     componentWillMount() {
         this.props.dispatch(actions.fetchGoals());
     }
-    // componentDidMount() {
-    //     let goalsArray = this.props.goals.goals;
-    //     let sticker = {};
-    // }
     render() {
         let goalsArray = this.props.goals.goals;
         let sticker = {};
@@ -47,7 +40,7 @@ class GoalsList extends React.Component {
                                 <Calendar goal={goal.goal} />
                             </div>
                             <div className="buttons-group">
-                                <FlatButton className="done" onClick={() => {
+                                <FlatButton className="done" primary={true} onClick={() => {
                                     if (goal.completed === false) {
                                         sticker.earned = true;
                                         this.props.dispatch(actions.earnSticker(sticker, goal._id));
@@ -60,7 +53,7 @@ class GoalsList extends React.Component {
                                     // this.props.dispatch(actions.updateCompletedGoal(goal._id));
                                 }}>
                                     Done!</FlatButton>
-                                <FlatButton className="delete" onClick={() => {
+                                <FlatButton className="delete" secondary={true} onClick={() => {
                                     this.props.dispatch(actions.deleteGoal(goal._id))
                                 }}>
                                     Delete</FlatButton>

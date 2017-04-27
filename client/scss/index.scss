@@ -4,7 +4,7 @@
 
 html {
     height: 100%;
-    background:url(http://www.ilivethelifeilove.com/wp-content/uploads/2015/08/Still-water.jpg) no-repeat center center fixed;
+    background:url(http://socalpain.com/wp-content/uploads/2014/08/BenefitsofZenSandGarden.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -211,10 +211,10 @@ form {
 }
 
 .calendar {
-    font-size: .8em;
-    color: grey;
+    font-size: 1em;
     text-align: left;
-    margin: 7px;
+    margin: 3px;
+    line-height: 36px;
 }
 
 .goal-footer {
@@ -245,7 +245,7 @@ ul {
 a {
     text-decoration: none;
     font-family: 'Dosis', sans-serif;
-    color: #17E9EE;
+    color: rgb(0, 188, 212);
 }
 
 hr {
@@ -277,6 +277,7 @@ button a {
 .buttons-group {
     display: flex;
     justify-content: flex-end;
+    margin: 3px 0 0 50px;
 }
 
 .done {
@@ -361,6 +362,7 @@ button a {
     }
     .stickers-sidebar {
         margin: 0;
+        align-items: center;
     }
     .main {
         margin: 0 5px;
@@ -375,6 +377,9 @@ button a {
     }
     .calendar {
         text-align: center;
+    }
+    footer {
+        margin: 15px auto 50px;
     }
     .tagline, .source {
         margin: 10px 10px 5px;
