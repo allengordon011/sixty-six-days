@@ -17,15 +17,17 @@ body {
 
 .app {
   margin: 25px auto;
-  max-width: 1000px;
   background: white;
-  padding: 50px 20%; }
+  padding: 50px; }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 15px 0; }
+
+.goal-input-container {
+  margin: 15px 0 0 50px; }
 
 .splash-container {
   display: flex;
@@ -35,7 +37,7 @@ body {
   text-align: center;
   padding: 35px; }
 
-.gradient-container {
+.description-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,12 +92,22 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin: 0 50px;
-  max-width: 350px; }
+  margin: 0 20px;
+  min-width: 300px;
+  align-items: flex-end; }
+
+.view-saved-sticker-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end; }
+
+.stickers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; }
 
 footer {
-  margin-bottom: 20px;
-  margin-top: 10px; }
+  margin: 15px 0 15px 50px; }
 
 h1 {
   font-family: 'Anton', sans-serif;
@@ -171,10 +183,10 @@ form {
   margin: 0 7px; }
 
 img {
-  height: 150px;
+  height: 120px;
   margin: 0 0 2px;
   border: 1px solid darkgrey;
-  border-radius: 10px; }
+  border-radius: 5px; }
 
 p {
   font-size: 1em; }
@@ -222,8 +234,8 @@ button a {
 
 .quotes {
   font-size: .9em;
-  text-align: right;
-  margin: 0 50px;
+  text-align: left;
+  margin: 0 50px 3px;
   max-width: 900px; }
 
 .tagline {
@@ -246,7 +258,7 @@ button a {
   .splash-container {
     padding: 25px;
     min-width: 375px; }
-  .gradient-container {
+  .description-container {
     padding: 15px; }
   .description-item {
     flex-direction: column;

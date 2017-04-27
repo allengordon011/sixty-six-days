@@ -17,7 +17,7 @@ const goalsReducer = (state = initialState, action) => {
                     loading: false
                 }
             }
-        case actions.FETCH_ERROR:
+        case actions.FETCH_GOALS_ERROR:
             {
                 return {
                     ...state,

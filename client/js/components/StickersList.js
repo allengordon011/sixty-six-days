@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import * as actions from '../actions/actions';
+import HideStickersButton from './Button-HideStickers';
+import ShowStickersButton from './Button-ShowStickers';
 
 class StickersList extends React.Component {
     constructor(props) {
@@ -29,19 +31,25 @@ class StickersList extends React.Component {
         if (this.props.stickers.hidden === false) {
             if (count > 0) {
                 return (
-                    <div>
+                    <div className="stickers">
+                        <HideStickersButton />
                         {earnedStickers}
                     </div>
                 );
             } else {
                 return (
-                    <div>
+                    <div className="stickers">
+                        <ShowStickersButton />
                         <p className="stickers-earned-subtitle">Complete your goals to earn rewards!</p>
                     </div>
                 )
             }
         } else {
-            return <div></div>
+            return (
+                <div className="stickers">
+                    <ShowStickersButton />
+                </div>
+            )
         }
 
     }

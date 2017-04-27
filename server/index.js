@@ -25,7 +25,7 @@ app.use(express.static(process.env.CLIENT_PATH));
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
 mongoose.Promise = global.Promise;
- 
+
 // app.use(cookieParser('galapagos'));
 app.use(session({
     secret: 'galapagos',
@@ -235,7 +235,7 @@ passport.use('local-signup', new LocalStrategy(function(username, password, done
         let user = _user;
         if (user) {
             console.error('User already exists');
-            return done(null, false);
+            return done(null, false, { message: 'User already exists' });
         }
         // console.log('Creating user');
         return User.hashPassword(password)
@@ -245,7 +245,7 @@ passport.use('local-signup', new LocalStrategy(function(username, password, done
             done(null, user);
         });
     })
-    .catch(function () {
+    .catch(error => {
          console.error("Signup Rejected");
     });
 }));

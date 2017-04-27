@@ -34,40 +34,47 @@ class InputLogin extends React.Component {
         event.target.username.value = '';
         event.target.password.value = '';
     }
-
+    componentDidUpdate() {
+        this.props.fail ? this.showFailAlert() : null
+    }
     showAlert() {
+        msg.show('Please complete both input fields', {
+          type: 'info'
+        });
+    }
+    showFailAlert() {
         msg.show('Please enter a valid username and password', {
           type: 'error'
         });
+        this.props.dispatch(actions.resetFail());
     }
 
 
   render() {
-    //   console.log(this.props.isLoggedIn)
 
-        return (
+    return (
 
-            this.props.isLoggedIn ?
-            <Redirect to={{ pathname: '/app' }} /> :
+        this.props.isLoggedIn ?
+        <Redirect to={{ pathname: '/app' }} /> :
 
-                <div className="container">
-                    <AlertContainer ref={(a) => global.msg = a} {...this.alertOptions} />
+            <div className="container">
+                <AlertContainer ref={(a) => global.msg = a} {...this.alertOptions} />
 
-                    <p className="demo-user">For demonstration purposes: <br /> username: demo password: demo</p>
+                <p className="demo-user">For demonstration purposes: <br /> username: demo password: demo</p>
 
-                    <form className="input-form" onSubmit={this.handleLogin}>
-                        <div className="inputs">
+                <form className="input-form" onSubmit={this.handleLogin}>
+                    <div className="inputs">
 
-                                <TextField type="text" name="username" hintText="username or email" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.userInput = input}/>
+                            <TextField type="text" name="username" hintText="username or email" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.userInput = input}/>
 
-                                <TextField type="password" name="password" hintText="choose a secure password" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.pwInput = input}/>
+                            <TextField type="password" name="password" hintText="choose a secure password" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.pwInput = input}/>
 
-                        </div>
-                        <RaisedButton className="enter" primary={true} type="submit">Login</RaisedButton>
-                    </form>
+                    </div>
+                    <RaisedButton className="enter" primary={true} type="submit">Login</RaisedButton>
+                </form>
 
-            </div>
-            )
+        </div>
+        )
 
     }
 }
@@ -76,6 +83,6 @@ class InputLogin extends React.Component {
 //   history: PropTypes.object.isRequired
 // }
 
-const mapStateToProps = (state, props) => ({isLoggedIn: state.users.isLoggedIn})
+const mapStateToProps = (state, props) => ({isLoggedIn: state.users.isLoggedIn, fail: state.users.fail })
 
 export default connect(mapStateToProps)(InputLogin)

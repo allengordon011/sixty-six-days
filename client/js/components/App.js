@@ -4,7 +4,6 @@ import Input from './Input';
 import StickersList from './StickersList';
 import Quote from './Quote';
 import LogoutButton from './Button-Logout';
-import StickersButtons from './Buttons-Stickers';
 import { Redirect } from 'react-router'
 import {connect} from 'react-redux';
 
@@ -22,14 +21,12 @@ class App extends React.Component {
                         <Quote />
                         <hr />
                         <Input />
-                        <hr />
                     </section>
 
                     <div className="wrapper">
                             <GoalsList />
                         <div className="stickers-sidebar">
                             <h3 className="stickers-earned">Stickers Earned</h3>
-                            <StickersButtons />
                             <StickersList />
                         </div>
                     </div>
