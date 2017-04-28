@@ -83,6 +83,6 @@ class InputLogin extends React.Component {
 //   history: PropTypes.object.isRequired
 // }
 
-const mapStateToProps = (state, props) => ({isLoggedIn: state.users.isLoggedIn, fail: state.users.fail })
+const mapStateToProps = (state, props) => ({isLoggedIn: state.user.isLoggedIn, fail: state.user.fail })
 
 export default connect(mapStateToProps)(InputLogin)

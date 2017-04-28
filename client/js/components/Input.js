@@ -48,6 +48,6 @@ class Input extends React.Component {
     }
 }
 
-const mapStateToProps = (state, props) => ({goals: state.goals})
+const mapStateToProps = (state, props) => ({id: state.user.goals})
 
 export default connect(mapStateToProps)(Input)

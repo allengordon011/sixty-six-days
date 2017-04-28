@@ -3,8 +3,6 @@ import * as actions from '../actions/actions';
 const initialState = {
   stickers: [{
       sticker: '',
-    //   earned: false,
-    //   goalId: '',
       loading: true,
       hidden: true
     }]
@@ -40,13 +38,6 @@ const stickersReducer = (state=initialState, action) => {
                 ...state,
                 hidden: true
             }
-        }
-        case actions.FETCH_ERROR: {
-            console.log('Fetch error!');
-            return {
-                ...state,
-              stickers: action.error
-          }
         }
 
         default:

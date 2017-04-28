@@ -45,7 +45,8 @@ class InputSignup extends React.Component {
         this.props.dispatch(actions.resetFail());
     }
     showErrorAlert() {
-        msg.show(`Signup error! {this.props.error}`, {
+        console.log(`Signup error!`, this.props.error)
+        msg.show(`Signup error!`, {
           type: 'error'
         });
     }
@@ -77,6 +78,6 @@ class InputSignup extends React.Component {
 
 
 
-const mapStateToProps = (state, props) => ({isLoggedIn: state.users.isLoggedIn, fail: state.users.fail, error: state.users.error })
+const mapStateToProps = (state, props) => ({isLoggedIn: state.user.isLoggedIn, fail: state.user.fail, error: state.user.error })
 
 export default connect(mapStateToProps)(InputSignup)

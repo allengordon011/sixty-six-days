@@ -11,14 +11,15 @@ class StickersList extends React.Component {
     componentWillMount() {
         this.props.dispatch(actions.fetchStickers())
     }
+
     render() {
-        console.log('GOALS STICKERS: ', this.props.goals.goals)
-        // let randomize25 = Math.floor(Math.random() * 25);
-        let goalsArray = this.props.goals.goals;
+
+        let goalsArray = this.props.goals;
         let count = 0;
         let earnedStickers = goalsArray.length <= 1
             ? "Loading..."
             : goalsArray.map((goal, i) => {
+                console.log('goal compl?: ', goal.completed)
                 if (goal.completed == true) {
                     count++;
                     return (
@@ -39,22 +40,23 @@ class StickersList extends React.Component {
             } else {
                 return (
                     <div className="stickers">
-                        <ShowStickersButton />
+                        <HideStickersButton />
                         <p className="stickers-earned-subtitle">Complete your goals to earn rewards!</p>
                     </div>
                 )
             }
-        } else {
-            return (
-                <div className="stickers">
-                    <ShowStickersButton />
-                </div>
-            )
         }
+
+        return (
+            <div className="stickers">
+                <ShowStickersButton />
+            </div>
+        )
+    
 
     }
 }
 
-const mapStateToProps = (state, props) => ({goals: state.goals, stickers: state.stickers})
+const mapStateToProps = (state, props) => ({goals: state.user.goals, stickers: state.stickers})
 
 export default connect(mapStateToProps)(StickersList);

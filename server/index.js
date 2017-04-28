@@ -9,7 +9,7 @@ const app = express();
 app.use(morgan('common'));
 app.use(jsonParser);
 
-const {User} = require('../models/user');
+import User from '../models/user';
 import Goal from '../models/goal';
 
 
@@ -116,38 +116,59 @@ app.get('/api/user', isLoggedIn, function(req, res, next) {
 
 //fetch goals from db
 app.get('/api/goal', isLoggedIn, (req, res, next) => {
-  Goal.find({})
-  .then((goals) => {
-    return res.status(200).json(goals);
-  })
+    User.findOne({username: req.user.username}).exec().then(_user => {
+        let user = _user;
+        return res.status(200).json({goals: user.goals});
+    })
   .catch(err => {
     console.error(err);
-    res.status(500).json({message: 'internal server error'})
+    return res.status(500).json({message: 'internal server error'})
   })
 })
 
 //post a goal to db
-app.post('/api/goal', isLoggedIn, function(req, res) {
+// app.post('/api/goal', isLoggedIn, function(req, res) {
+    app.put('/api/goal', isLoggedIn, (req, res) => {
+        console.log('POST   USER?!?', req.user)
 
-  let goal = new Goal()
-      goal.goal = req.body.goal
-      goal.save((err, goal) => {
-          if(err){
-              res.send(err)
+      User.findOneAndUpdate(
+        {_id: req.user._id},
+        {$push:{goals: {goal: req.body.goal}}},
+        {upsert: true},
+        function(error){
+          if (error) {
+            console.error(error);
+            res.sendStatus(400);
           }
-
-      Goal.find({}, (err, goals) => {
-          if(err){
-              res.send(err)
+          User.findOne({_id: req.user._id}, (err, user) => {
+              if(err){
+                  res.send(err)
+              }
+              res.json({goals: user.goals})
+          })
           }
-          res.json(goals)
-      })
-  })
-})
+      );
+    });
+//   let goal = new Goal()
+//       goal.goal = req.body.goal
+//       goal.save((err, goal) => {
+//           if(err){
+//               res.send(err)
+//           }
+//
+//       Goal.find({}, (err, goals) => {
+//           if(err){
+//               res.send(err)
+//           }
+//           res.json(goals)
+//       })
+//   })
+// })
 
 //change a goal
 app.put('/api/goal/:id', (req, res) => {
-  Goal.findOneAndUpdate(
+    //**FIND GOAL ID
+  User.findOneAndUpdate(
     {_id: req.params.id},
     {$set:{goal: req.body.goal}},
     {upsert: true},
@@ -156,17 +177,17 @@ app.put('/api/goal/:id', (req, res) => {
         console.error(error);
         res.sendStatus(400);
       }
-      Goal.find({}, (err, goal) => {
+      User.find({}, (err, user) => {
           if(err){
               res.send(err)
           }
-          res.json(goal)
+          res.json(user.goals)
       })
       }
   );
 });
 
-//change a goal status to completed
+//change a goal status to completed and add a sticker
 app.put('/api/goal/completed/:id', (req, res) => {
     Goal.findOne({_id: req.params.id}, function(err,obj) {
         Goal.findOneAndUpdate(

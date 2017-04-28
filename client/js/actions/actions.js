@@ -27,7 +27,6 @@ export const fetchGoalsError = error => ({
 export const FETCH_STICKERS_REQUEST = 'FETCH_STICKERS_REQUEST';
 export const fetchStickersRequest = () => ({
   type: FETCH_STICKERS_REQUEST
-  // stickers
 })
 
 export const FETCH_STICKERS_SUCCESS = 'FETCH_STICKERS_SUCCESS';
@@ -98,17 +97,19 @@ export const fetchGoals = () => dispatch => {
     return response;
   })
   .then(response => response.json())
-  .then(json =>
-      dispatch(fetchGoalsSuccess(json))
-  )
+  .then(json => {
+      console.log('JSON: ', json)
+      dispatch(fetchGoalsSuccess(json.goals))
+  })
   .catch(error =>
       dispatch(fetchGoalsError(error))
   );
 };
 
 export const postGoal = (goal) => dispatch => {
+    // console.log('POST REQ ID')
   return fetch(goalUrl, {
-    method: 'POST',
+    method: 'PUT',
     credentials: 'same-origin',
     headers: {
       'Content-Type': 'application/json'
@@ -207,12 +208,12 @@ export const loginUser = (username, password) => dispatch => {
     })
   })
   .then(response => {
-      console.log('LOGIN RES: ', response)
       return response.json()
   })
   .then(json => {
-          console.log('go to app page!', json)
+          console.log('go to app page!', json.user)
           dispatch(loginSuccess())
+          dispatch(fetchGoalsSuccess(json.user.goals))
   })
   .catch(err => {
       dispatch(loginFail());
