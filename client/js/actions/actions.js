@@ -130,6 +130,7 @@ export const deleteGoal = (id) => dispatch => {
 }
 
 export const updateGoal = (goal, id) => dispatch => {
+    console.log('updating goal', goal)
   return fetch(goalUrl + "/" + id, {
     method: 'PUT',
     credentials: 'same-origin',
@@ -211,7 +212,7 @@ export const loginUser = (username, password) => dispatch => {
       return response.json()
   })
   .then(json => {
-          console.log('go to app page!', json.user)
+        //   console.log('go to app page!', json.user)
           dispatch(loginSuccess())
           dispatch(fetchGoalsSuccess(json.user.goals))
   })

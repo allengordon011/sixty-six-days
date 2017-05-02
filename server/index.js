@@ -110,10 +110,6 @@ app.get('/api/user', isLoggedIn, function(req, res, next) {
     res.status(200).json({user: req.user});
 });
 
-
-
-//****OLD ENDPOINTS****//
-
 //fetch goals from db
 app.get('/api/goal', isLoggedIn, (req, res, next) => {
     User.findOne({username: req.user.username}).exec().then(_user => {
@@ -168,21 +164,23 @@ app.get('/api/goal', isLoggedIn, (req, res, next) => {
 //change a goal
 app.put('/api/goal/:id', (req, res) => {
     //**FIND GOAL ID
+    let goalId = req.params.id;
   User.findOneAndUpdate(
-    {_id: req.params.id},
-    {$set:{goal: req.body.goal}},
+    {_id: req.user._id},
+    {$set: {"goals.$.goalId": req.body.goal}},
     {upsert: true},
     function(error){
       if (error) {
         console.error(error);
         res.sendStatus(400);
       }
-      User.find({}, (err, user) => {
-          if(err){
-              res.send(err)
-          }
-          res.json(user.goals)
-      })
+    //   User.findOne({_id: req.user._id}, (err, user) => {
+    //       console.log('USER AFTER UPDATE: ', user)
+    //       if(err){
+    //           res.send(err)
+    //       }
+    //       res.json({goals: user.goals})
+    //   })
       }
   );
 });
