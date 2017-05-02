@@ -12,7 +12,6 @@ class App extends React.Component {
         super(props)
     }
     render() {
-        console.log('APP REQ USER', this.props)
         // console.log('APP REQ USER', req.session)
 
         return (
@@ -45,6 +44,6 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state, props) => ({isLoggedIn: state.users.isLoggedIn})
+const mapStateToProps = (state, props) => ({isLoggedIn: state.user.isLoggedIn, user: state.user.user})
 
 export default connect(mapStateToProps)(App)

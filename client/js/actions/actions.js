@@ -212,7 +212,7 @@ export const loginUser = (username, password) => dispatch => {
   })
   .then(json => {
           console.log('go to app page!', json)
-          dispatch(loginSuccess())
+          dispatch(loginSuccess(username))
   })
   .catch(err => {
       dispatch(loginFail());

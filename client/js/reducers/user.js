@@ -1,17 +1,18 @@
 import * as actions from '../actions/actions';
 
 const initialState = {
-  users: [],
+  user: '',
   isLoggedIn: false,
   fail: false,
   error: ''
 };
 
-const usersReducer = (state=initialState, action) => {
+const userReducer = (state=initialState, action) => {
 
   if (action.type === actions.LOGIN_SUCCESS) {
       console.log('Login success')
     return {...state,
+      user: action.username,
       isLoggedIn: true
     }
   }
@@ -44,4 +45,4 @@ const usersReducer = (state=initialState, action) => {
   return state;
 }
 
-export default usersReducer;
+export default userReducer;

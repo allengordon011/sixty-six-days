@@ -185,6 +185,9 @@ form {
     margin: 25px 0;
 }
 
+input {
+    font-family: 'Dosis', sans-serif;
+}
 // .inputs {
 //     display: flex;
 // }
@@ -215,6 +218,14 @@ form {
     text-align: left;
     margin: 3px;
     line-height: 36px;
+}
+
+.calendar:hover {
+    cursor: pointer;
+}
+
+.calendar ul {
+    line-height: 20px;
 }
 
 .goal-footer {

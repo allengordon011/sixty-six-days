@@ -12,8 +12,10 @@ class GoalsList extends React.Component {
         this.props.dispatch(actions.fetchGoals());
     }
     render() {
+        console.log('goals props: ', this.props)
         let goalsArray = this.props.goals.goals;
         let sticker = {};
+        console.log('goalsArray: ', goalsArray)
 
         const goalsList = goalsArray.map((goal, i) => {
                 let strikeThru = goal.completed
@@ -70,7 +72,7 @@ class GoalsList extends React.Component {
                     Your goals will appear here...
                 </div>
             )
-        } else {
+            } else {
                 return (
                     <div className="goals">
                         <h3>Your Goals</h3>

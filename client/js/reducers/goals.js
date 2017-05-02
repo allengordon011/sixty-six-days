@@ -8,6 +8,14 @@ const initialState = {
 const goalsReducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case actions.FETCH_GOALS_REQUEST:
+            {
+                console.log('Fetch goals request')
+                return {
+                    ...state,
+                    loading: true
+                }
+            }
         case actions.FETCH_GOALS_SUCCESS:
             {
                 console.log('Fetch goals success')

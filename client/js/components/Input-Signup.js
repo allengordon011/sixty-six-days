@@ -77,6 +77,6 @@ class InputSignup extends React.Component {
 
 
 
-const mapStateToProps = (state, props) => ({isLoggedIn: state.users.isLoggedIn, fail: state.users.fail, error: state.users.error })
+const mapStateToProps = (state, props) => ({isLoggedIn: state.user.isLoggedIn, fail: state.user.fail, error: state.user.error })
 
 export default connect(mapStateToProps)(InputSignup)

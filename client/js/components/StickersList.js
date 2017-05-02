@@ -39,7 +39,7 @@ class StickersList extends React.Component {
             } else {
                 return (
                     <div className="stickers">
-                        <ShowStickersButton />
+                        <HideStickersButton />
                         <p className="stickers-earned-subtitle">Complete your goals to earn rewards!</p>
                     </div>
                 )
