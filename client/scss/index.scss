@@ -3,20 +3,26 @@
 }
 
 html {
-    min-height: 100%;
+    height: 100%;
+    background:url(http://socalpain.com/wp-content/uploads/2014/08/BenefitsofZenSandGarden.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 
 body {
+    min-height: 100%;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, .75);
     margin: 0;
-    padding: 0;
-    background: url('../client/img/sand-dunes.jpg')
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .app {
     margin: 25px auto;
-    max-width: 1000px;
+    // max-width: 1000px;
     background: white;
-    padding: 50px 20%;
+    padding: 50px;
 }
 
 .container {
@@ -26,21 +32,24 @@ body {
     margin: 15px 0;
 }
 
+.goal-input-container {
+    margin: 15px 0 0 50px;
+}
+
 .splash-container {
     display: flex;
     flex: 1;
     flex-wrap: wrap;
     margin: 0 auto;
     text-align: center;
-    background-color: white;
     padding: 35px;
 }
 
-.gradient-container {
+.description-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px 150px;
+    padding: 20px 150px;
     bottom: 0;
     text-align: center;
 }
@@ -62,9 +71,13 @@ body {
     min-width: 161px;
 }
 
+.demo-instr {
+    margin: 10px auto 25px;
+}
+
 .material-icons.md-48 { font-size: 48px; }
 
-.login-container {
+.login-signup-container {
     text-align: center;
 }
 
@@ -96,14 +109,25 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin: 0 50px;
-    max-width: 350px;
+    margin: 0 20px;
+    min-width: 300px;
+    align-items: flex-end;
+}
+
+.view-saved-sticker-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.stickers {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 footer {
-    // text-align: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin: 25px 0 15px 50px;
 }
 
 h1 {
@@ -132,16 +156,16 @@ h3 {
 
 .main-title {
     font-family: 'Anton', sans-serif;
-    font-size: 1.7em;
-    margin: 0 50px;
-    text-align: right;
+    font-size: 2.3em;
+    margin: 0;
+    text-align: center;
 }
 
 .main-subtitle {
     font-family: 'Pragati Narrow', sans-serif;
-    font-size: 1.1em;
-    margin: 0 50px;
-    text-align: right;
+    font-size: 1.3em;
+    margin: 0 0 20px;
+    text-align: center;
 }
 
 .stickers-earned {
@@ -153,7 +177,8 @@ h3 {
 }
 
 label {
-    font-size: 1.2em;
+    font-size: 1em;
+    text-align: center;
 }
 
 form {
@@ -161,20 +186,14 @@ form {
 }
 
 input {
-    display: flex;
-    flex-direction: row;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px 0 5px 0;
-    text-align: center;
-    font-size: .9em;
+    font-family: 'Dosis', sans-serif;
 }
 
 .goal-container {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    max-width: 550px;
+    width: 350px;
 }
 
 .goal-box {
@@ -183,34 +202,48 @@ input {
     margin: 0;
     padding: 10px;
     border-radius: 5px;
+    max-width: 350px;
 }
 
 .goal-text {
-    // width: 50%;
+    margin: 0;
     vertical-align: bottom;
 }
 
 .calendar {
-    font-size: .8em;
-    color: grey;
-    text-align: left;
-    margin: 7px;
+    margin: 3px;
+    line-height: 36px;
 }
 
-.sticker {
-    border: 1px solid darkgrey;
-    margin: 0 7px;
+.calendar:hover {
+    cursor: pointer;
+}
+
+.calendar ul {
+    line-height: 20px;
+    margin: 0;
+}
+
+.goal-footer {
+    display: flex;
+    flex-direction: row;
+}
+
+.sticker-frame {
+    height: 120px;
+    width: 150px;
+    margin-bottom: 5px;
 }
 
 img {
-    height: 150px;
-    margin: 0 0 2px;
-    border: 1px solid darkgrey;
-    border-radius: 10px;
+    max-width:100%;
+    min-height:100%;
+    border: 1px solid rgb(0, 188, 212);
+    border-radius: 5px;
 }
 
 p {
-    font-size: .9em;
+    font-size: 1em;
 }
 
 ul {
@@ -220,53 +253,53 @@ ul {
 a {
     text-decoration: none;
     font-family: 'Dosis', sans-serif;
-    color: #17E9EE;
+    color: rgb(0, 188, 212);
 }
 
 hr {
-    background-color: #033658;
+    background-color: #104B1E;
     border: 0;
     height: 1px;
     width: 99%;
 }
 
 button {
-    border-radius: 5px;
-    border: 0;
     color: white;
     // font-family: 'Pragati Narrow', sans-serif;
 }
 
+button a {
+    color: white;
+    // font-family: 'Pragati Narrow', sans-serif;
+}
+
+.hide-saved-stickers-button {
+    margin-bottom: 3px;
+}
+
+.splash-buttons {
+    display: flex;
+    margin: 0 auto;
+}
+
 .enter {
-    margin: 25px 0 0;
-    // height: 50px;
-    // width: 150px;
-    // align-self: center;
-    // font-size: 1.2em;
-    // background-color: #033658;
+    margin: 15px 0 0;
 }
 
 .buttons-group {
     display: flex;
     justify-content: flex-end;
+    margin: 3px 0 0 50px;
 }
 
-.done {
-    background-color: green;
-    margin-left: 1em;
-    font-size: .6em;
-}
-
-.delete {
-    background-color: red;
-    margin-left: 1em;
-    font-size: .6em;
+.done, .delete {
+    min-width: 50px !important;
 }
 
 .quotes {
-    font-size: .9em;
-    text-align: right;
-    margin: 0 50px;
+    font-style: italic;
+    text-align: center;
+    margin: 0 50px 3px;
     max-width: 900px;
 }
 
@@ -276,7 +309,7 @@ button {
 
 .source {
     margin: 0;
-    font-size: .7em;
+    font-size: .8em;
 }
 
 .strikeThru {
@@ -285,8 +318,7 @@ button {
 
 @media (max-width: 736px) {
     body {
-        // background: white;
-        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.85);
     }
     .app {
         display: flex;
@@ -294,12 +326,15 @@ button {
         align-items: center;
         text-align: center;
         padding: 10px;
+        margin: 5px auto;
+        background: none;
     }
     .splash-container {
         padding: 25px;
+        min-width: 375px;
     }
-    .gradient-container {
-        padding: 35px;
+    .description-container {
+        padding: 0 15px 15px;
     }
     .description-items-container {
     }
@@ -309,12 +344,22 @@ button {
         justify-content: center;
         margin: 10px auto;
     }
+    .login-signup-container {
+        max-width: 400px;
+    }
+    .container {
+        align-items: initial;
+        max-width: 400px;
+    }
     .title {
-    font-size: 4em;
+    font-size: 3em;
     margin: 25px 0 0;
     }
     .subtitle {
-    font-size: 2em;
+    font-size: 1.4em;
+    }
+    .demo-instr {
+        margin: 10px auto 15px;
     }
     .enter {
     margin: 15px 0 15px 0;
@@ -326,23 +371,50 @@ button {
     }
     .stickers-sidebar {
         margin: 0;
+        align-items: center;
     }
     .main {
         margin: 0 5px;
         align-items: center;
     }
+    .goal-input-container {
+        margin: 15px auto;
+    }
     input {
-        text-align: center;
+        text-align: center !important;
+    }
+    .goal-input2 {
+        width: 274px !important;
     }
     .goal-box {
         align-self: center;
         min-width: 320px;
     }
+    .goal-text {
+        margin: 0 auto;
+    }
+    .goal-footer {
+        flex-direction: column;
+        align-items: center;
+    }
     .calendar {
         text-align: center;
+        font-size: .8em;
+        margin: 15px 0 0;
+        line-height: 15px;
     }
-    .tagline, .source {
-        margin: 2px 10px 5px;
+    .buttons-group {
+        margin: 0;
+        font-size: .8em;
+    }
+    footer {
+        margin: 15px auto 50px;
+    }
+    .tagline {
+        margin: 10px 10px 5px;
+    }
+    .source {
+        margin: 2px 10px 5px
     }
     .quotes {
         margin: 15px 0 0;
@@ -355,13 +427,16 @@ button {
         margin: 0 0 5px;
     }
     .main-title {
-        font-size: 1.5em;
-        margin: 20px 35px 0;
+        margin: 35px 0 0;
         text-align: center;
     }
     .main-subtitle {
-        font-size: .9em;
         margin: 0 35px;
         text-align: center;
     }
+    .stickers {
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
 }

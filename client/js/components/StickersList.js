@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import * as actions from '../actions/actions';
+import HideStickersButton from './Button-HideStickers';
+import ShowStickersButton from './Button-ShowStickers';
 
 class StickersList extends React.Component {
     constructor(props) {
@@ -10,8 +12,6 @@ class StickersList extends React.Component {
         this.props.dispatch(actions.fetchStickers())
     }
     render() {
-        console.log('GOALS STICKERS: ', this.props.goals.goals)
-        // let randomize25 = Math.floor(Math.random() * 25);
         let goalsArray = this.props.goals.goals;
         let count = 0;
         let earnedStickers = goalsArray.length <= 1
@@ -20,7 +20,7 @@ class StickersList extends React.Component {
                 if (goal.completed == true) {
                     count++;
                     return (
-                        <div key={i}>
+                        <div className='sticker-frame' key={i}>
                             <img className='earned-sticker' src={goal.sticker}/>
                         </div>
                     )
@@ -29,19 +29,25 @@ class StickersList extends React.Component {
         if (this.props.stickers.hidden === false) {
             if (count > 0) {
                 return (
-                    <div>
+                    <div className="stickers">
+                        <HideStickersButton />
                         {earnedStickers}
                     </div>
                 );
             } else {
                 return (
-                    <div>
+                    <div className="stickers">
+                        <HideStickersButton />
                         <p className="stickers-earned-subtitle">Complete your goals to earn rewards!</p>
                     </div>
                 )
             }
         } else {
-            return <div></div>
+            return (
+                <div className="stickers">
+                    <ShowStickersButton />
+                </div>
+            )
         }
 
     }

@@ -2,24 +2,20 @@ import React from 'react';
 import {connect} from 'react-redux'
 import * as actions from '../actions/actions';
 import Calendar from './Calendar';
+import FlatButton from 'material-ui/FlatButton';
 
 class GoalsList extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     goals: []
-        // }
     }
     componentWillMount() {
         this.props.dispatch(actions.fetchGoals());
     }
-    // componentDidMount() {
-    //     let goalsArray = this.props.goals.goals;
-    //     let sticker = {};
-    // }
     render() {
+        console.log('goals props: ', this.props)
         let goalsArray = this.props.goals.goals;
         let sticker = {};
+        console.log('goalsArray: ', goalsArray)
 
         const goalsList = goalsArray.map((goal, i) => {
                 let strikeThru = goal.completed
@@ -39,29 +35,31 @@ class GoalsList extends React.Component {
                         <div className="goal-box" id={i}>
                             <div className={`goal-text ${strikeThru}`} onBlur={(event) => this.props.dispatch(actions.updateGoal(event.target.innerText, goal._id))} contentEditable='true'>{goal.goal}
                             </div>
-                            <section className="buttons-group">
-                                <button className="done" onClick={() => {
+
+                        </div>
+                        <div className="goal-footer">
+                            <div className="calendar">
+                                <Calendar goal={goal.goal} />
+                            </div>
+                            <div className="buttons-group">
+                                <FlatButton className="done" primary={true} onClick={() => {
                                     if (goal.completed === false) {
                                         sticker.earned = true;
                                         this.props.dispatch(actions.earnSticker(sticker, goal._id));
+                                        this.props.dispatch(actions.showStickers());
                                     } else {
                                         sticker.earned = false;
                                         sticker = '';
                                         this.props.dispatch(actions.removeSticker(sticker, goal._id));
-
                                     }
-                                    // this.props.dispatch(actions.updateCompletedGoal(goal._id));
                                 }}>
-                                    Done!</button>
-                                <button className="delete" onClick={() => {
+                                    Done!</FlatButton>
+                                <FlatButton className="delete" secondary={true} onClick={() => {
                                     this.props.dispatch(actions.deleteGoal(goal._id))
                                 }}>
-                                    Delete</button>
-                            </section>
-                        </div>
-                            <div className="calendar">
-                                <Calendar goal={goal.goal} />
+                                    Delete</FlatButton>
                             </div>
+                        </div>
                     </div>
                 )
             })
@@ -73,7 +71,7 @@ class GoalsList extends React.Component {
                     Your goals will appear here...
                 </div>
             )
-        } else {
+            } else {
                 return (
                     <div className="goals">
                         <h3>Your Goals</h3>

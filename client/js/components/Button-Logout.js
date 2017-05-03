@@ -14,7 +14,7 @@ class LogoutButton extends React.Component {
     render(){
         return (
             <div className="logout-container">
-                <RaisedButton className="logout-button" onClick={this.handleClick}>Logout</RaisedButton>
+                <RaisedButton className="logout-button" primary={true} onClick={this.handleClick}>Logout</RaisedButton>
             </div>
         )
     }

@@ -1,11 +1,11 @@
 import React from 'react';
 import InputSignup from './Input-Signup'
-
+import { Link } from 'react-router-dom';
 
 function Signup() {
     return (
-        <div>
-            <div className="signup-container">
+        <div className="home">
+            <div className="login-signup-container">
                 <header>
                     <h1 className="title">Sixty-Six Days</h1>
                     <h2 className="subtitle">Set goals, stick to them.</h2>
@@ -14,11 +14,11 @@ function Signup() {
                 <InputSignup />
 
             </div>
-
-                    <div className="panel-footer">
-                     Already have an account? <a href="/login"> Login</a>
-                    <p>Or go <a href="/">home</a>.</p>
-                </div>
+            <div className="panel-footer">
+                 Already have an account? <Link to="/login"> Login</Link>
+                 <br />
+                Or go <Link to="/"> Home</Link>
+            </div>
         </div>
     )
 }

@@ -18,9 +18,9 @@ export const fetchGoalsSuccess = goals => ({
   goals
 })
 
-export const FETCH_ERROR = 'FETCH_GOALS_ERROR';
-export const fetchError = error => ({
-  type: FETCH_ERROR,
+export const FETCH_GOALS_ERROR = 'FETCH_GOALS_ERROR';
+export const fetchGoalsError = error => ({
+  type: FETCH_GOALS_ERROR,
   error
 })
 
@@ -60,7 +60,22 @@ export const hideStickers = () => ({
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const loginSuccess = () => ({
     type: LOGIN_SUCCESS
+})
 
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const loginFail = () => ({
+    type: LOGIN_FAIL
+})
+
+export const RESET_FAIL = 'RESET_FAIL';
+export const resetFail = () => ({
+    type: RESET_FAIL
+})
+
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const loginError = (error) => ({
+    type: LOGIN_ERROR,
+    error
 })
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
@@ -87,7 +102,7 @@ export const fetchGoals = () => dispatch => {
       dispatch(fetchGoalsSuccess(json))
   )
   .catch(error =>
-      dispatch(fetchError(error))
+      dispatch(fetchGoalsError(error))
   );
 };
 
@@ -124,8 +139,6 @@ export const updateGoal = (goal, id) => dispatch => {
         goal
         })
       })
-    //   .then(json => dispatch(fetchGoalsSuccess(json))
-    // )
     .catch(err => console.error(err))
 }
 
@@ -141,16 +154,11 @@ export const updateCompletedGoal = (sticker, id) => dispatch => {
           sticker: sticker.sticker
       })
     })
-    .then(() => dispatch(fetchGoals())
-      // .then((response) => response.json())
-      // .then((json) => dispatch(fetchGoalsSuccess(json))
-    )
+    .then(() => dispatch(fetchGoals()))
     .catch(err => console.error(err))
 }
 
 export const fetchStickers = () => dispatch => {
-    // return (dispatch) => dispatch(fetchStickersRequest)
-
     fetch('https://api.giphy.com/v1/gifs/search?q=success&api_key=dc6zaTOxFJmzC', {
     method: 'get'
     })
@@ -179,7 +187,11 @@ export const signupUser = (username, password) => dispatch => {
   .then(json => {
             dispatch(loginSuccess())
         })
-        .catch(err => console.log('SIGNUP ERROR: ', err))
+        .catch(err => {
+            dispatch(loginFail());
+            dispatch(loginError(err));
+            console.error('SIGNUP ERROR: ', err);
+        })
 }
 
 export const loginUser = (username, password) => dispatch => {
@@ -195,13 +207,18 @@ export const loginUser = (username, password) => dispatch => {
     })
   })
   .then(response => {
+      console.log('LOGIN RES: ', response)
       return response.json()
   })
   .then(json => {
           console.log('go to app page!', json)
-          dispatch(loginSuccess())
-})
-  .catch(err => console.log('LOGIN ERROR: ', err))
+          dispatch(loginSuccess(username))
+  })
+  .catch(err => {
+      dispatch(loginFail());
+      dispatch(loginError(err));
+      return console.error('LOGIN ERROR: ', err);
+  })
 }
 
 export const logoutUser = () => dispatch => {
@@ -211,7 +228,7 @@ export const logoutUser = () => dispatch => {
     }).then(
     console.log('fired off logoutUser event'))
     .then(dispatch(logoutSuccess()))
-    .catch(err => console.log('LOGOUT ERROR: ', err))
+    .catch(err => console.error('LOGOUT ERROR: ', err))
 
 }
 

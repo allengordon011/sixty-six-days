@@ -116,7 +116,7 @@ app.get('/api/user', isLoggedIn, function(req, res, next) {
 
 //fetch goals from db
 app.get('/api/goal', isLoggedIn, (req, res, next) => {
-  Goal.find({})
+  Goal.find({_creator: req.user.username})
   .then((goals) => {
     return res.status(200).json(goals);
   })
@@ -128,15 +128,15 @@ app.get('/api/goal', isLoggedIn, (req, res, next) => {
 
 //post a goal to db
 app.post('/api/goal', isLoggedIn, function(req, res) {
-
-  let goal = new Goal()
-      goal.goal = req.body.goal
+  let goal = new Goal({ goal: req.body.goal, _creator: req.user.username })
+    //   goal.goal = req.body.goal
+    //   console.log('goal.goal?: ', goal)
       goal.save((err, goal) => {
           if(err){
               res.send(err)
           }
 
-      Goal.find({}, (err, goals) => {
+      Goal.find({_creator: req.user.username}, (err, goals) => {
           if(err){
               res.send(err)
           }
@@ -156,7 +156,7 @@ app.put('/api/goal/:id', (req, res) => {
         console.error(error);
         res.sendStatus(400);
       }
-      Goal.find({}, (err, goal) => {
+      Goal.find({_creator: req.user.username}, (err, goal) => {
           if(err){
               res.send(err)
           }
@@ -180,7 +180,7 @@ app.put('/api/goal/completed/:id', (req, res) => {
           }
     });
 
-      Goal.find({}, (err, goal) => {
+      Goal.find({_creator: req.user.username}, (err, goal) => {
           if(err){
               res.send(err)
           }
@@ -212,7 +212,7 @@ function isLoggedIn(req, res, next) {
         return next();
     } else {
         return res.status(403).json({message: 'User Not Logged In'});
-        return res.redirect('/login');
+        // return res.redirect('/login');
     }
 }
 
@@ -265,7 +265,7 @@ passport.use('local-login', new LocalStrategy(function(username, password, done)
             return done(null, false, {message: 'Invalid Password'});
         } else {
             console.log('Valid Password');
-            return done(null, user);
+            return done(null, user, {message: 'Valid Password'});
         }
     })
     .catch(function () {

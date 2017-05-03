@@ -2,29 +2,45 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/actions';
 import TextField from 'material-ui/TextField';
+import AlertContainer from 'react-alert';
 
 class Input extends React.Component {
     constructor(props) {
         super(props);
         this.postGoal = this.postGoal.bind(this);
+        this.alertOptions = {
+              offset: 23,
+              position: 'top right',
+              theme: 'light',
+              time: 5000,
+              transition: 'fade'
+            };
     }
     postGoal(event) {
         event.preventDefault();
-        const goal = this.textInput.value;
-        this.props.dispatch(actions.postGoal(goal))
-        console.log('fired off postGoal event', goal)
-        this.textInput.value = '';
+        const goal = event.target.input.value;
+        if(!goal){
+            this.showAlert();
+        } else { this.props.dispatch(actions.postGoal(goal))
+        console.log('fired off postGoal event', goal) }
+        event.target.input.value = '';
+    }
+
+    showAlert() {
+        msg.show('Please enter a goal', {
+          type: 'error'
+        });
     }
 
   render() {
         return (
-            <div className="container">
+            <div className="goal-input-container">
+                <AlertContainer ref={(a) => global.msg = a} {...this.alertOptions} />
+
                 <form className="input-form" onSubmit={this.postGoal}>
-                    <div>
-                        <label htmlFor="inputSuccess">New Goal</label>
-                        <div>
-                            <TextField type="text" className="input-input" id="inputSuccess" inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%' }} ref={input => this.textInput = input} placeholder="type your new awesome goal and press enter"/>
-                        </div>
+                    <h3>New Goal</h3>
+                    <div className="goal-input">
+                        <TextField type="text" name="input" className="goal-input2" style = {{width: 350 }} hintText="type your new awesome goal and press enter" hintStyle={{ color: 'rgba(0,0,0,.5)' }} ref={input => this.textInput = input} />
                     </div>
                 </form>
             </div>
