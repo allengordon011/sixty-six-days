@@ -46,13 +46,12 @@ class GoalsList extends React.Component {
                                     if (goal.completed === false) {
                                         sticker.earned = true;
                                         this.props.dispatch(actions.earnSticker(sticker, goal._id));
+                                        this.props.dispatch(actions.showStickers());
                                     } else {
                                         sticker.earned = false;
                                         sticker = '';
                                         this.props.dispatch(actions.removeSticker(sticker, goal._id));
-
                                     }
-                                    // this.props.dispatch(actions.updateCompletedGoal(goal._id));
                                 }}>
                                     Done!</FlatButton>
                                 <FlatButton className="delete" secondary={true} onClick={() => {

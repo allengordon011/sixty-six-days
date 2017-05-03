@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Signup() {
     return (
-        <div>
+        <div className="home">
             <div className="login-signup-container">
                 <header>
                     <h1 className="title">Sixty-Six Days</h1>

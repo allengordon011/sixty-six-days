@@ -63,9 +63,9 @@ class InputSignup extends React.Component {
                 <form className="input-form" onSubmit={this.handleSignup}>
                     <div className="inputs">
 
-                            <TextField type="text" name="username" hintText="username or email" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%', color: 'rgba(0,0,0,.8)' }} ref={input => this.userInput = input} />
+                            <TextField type="text" name="username" hintText="username or email" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%', color: 'rgba(0,0,0,.5)' }} ref={input => this.userInput = input} />
 
-                            <TextField type="password" name="password" hintText="choose a secure password" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%', color: 'rgba(0,0,0,.8)' }} ref={input => this.pwInput = input} />
+                            <TextField type="password" name="password" hintText="choose a secure password" style={{ margin: '0 5px' }} inputStyle={{ textAlign: 'center' }} hintStyle={{ textAlign: 'center', width: '100%', color: 'rgba(0,0,0,.5)' }} ref={input => this.pwInput = input} />
 
                     </div>
                     <RaisedButton className="enter" primary={true} type="submit">Signup</RaisedButton>

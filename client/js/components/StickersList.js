@@ -12,8 +12,6 @@ class StickersList extends React.Component {
         this.props.dispatch(actions.fetchStickers())
     }
     render() {
-        console.log('GOALS STICKERS: ', this.props.goals.goals)
-        // let randomize25 = Math.floor(Math.random() * 25);
         let goalsArray = this.props.goals.goals;
         let count = 0;
         let earnedStickers = goalsArray.length <= 1
@@ -22,7 +20,7 @@ class StickersList extends React.Component {
                 if (goal.completed == true) {
                     count++;
                     return (
-                        <div key={i}>
+                        <div className='sticker-frame' key={i}>
                             <img className='earned-sticker' src={goal.sticker}/>
                         </div>
                     )

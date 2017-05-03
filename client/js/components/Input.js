@@ -39,8 +39,8 @@ class Input extends React.Component {
 
                 <form className="input-form" onSubmit={this.postGoal}>
                     <h3>New Goal</h3>
-                    <div>
-                        <TextField type="text" name="input" style = {{width: 350 }} hintText="type your new awesome goal and press enter" ref={input => this.textInput = input} />
+                    <div className="goal-input">
+                        <TextField type="text" name="input" className="goal-input2" style = {{width: 350 }} hintText="type your new awesome goal and press enter" hintStyle={{ color: 'rgba(0,0,0,.5)' }} ref={input => this.textInput = input} />
                     </div>
                 </form>
             </div>

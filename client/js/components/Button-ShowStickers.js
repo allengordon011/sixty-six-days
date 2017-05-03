@@ -9,8 +9,7 @@ class ShowStickersButton extends React.Component {
         this.handleClickEvent = this.handleClickEvent.bind(this);
     }
     handleClickEvent() {
-        this.props.dispatch(actions.showStickers())
-        console.log('fired off showStickers')
+        this.props.dispatch(actions.showStickers());
     }
 
   render() {

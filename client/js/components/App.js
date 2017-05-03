@@ -20,10 +20,13 @@ class App extends React.Component {
 
             <div className="app">
                     <section className="main">
+                        <p className="main-title">Sixty-Six Days</p>
+                        <p className="main-subtitle">Set goals, stick to them.</p>
                         <Quote />
                         <hr />
-                        <Input />
                     </section>
+
+                    <Input />
 
                     <div className="wrapper">
                             <GoalsList />
@@ -35,9 +38,6 @@ class App extends React.Component {
                 <hr />
                 <footer>
                     <LogoutButton />
-                    <p className="main-title">Sixty-Six Days</p>
-                    <p className="main-subtitle">Set goals, stick to them.</p>
-
                 </footer>
             </div>
         )

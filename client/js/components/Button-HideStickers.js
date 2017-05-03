@@ -11,7 +11,6 @@ class HideStickersButton extends React.Component {
     }
     handleHideClickEvent() {
         this.props.dispatch(actions.hideStickers())
-        console.log('fired off hideStickers')
 
     }
 
