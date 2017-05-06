@@ -3,7 +3,7 @@
 
 html {
   height: 100%;
-  background: url(http://socalpain.com/wp-content/uploads/2014/08/BenefitsofZenSandGarden.jpg) no-repeat center center fixed;
+  background: url(https://s3.us-east-2.amazonaws.com/trig010/zen-garden.jpg) no-repeat center center fixed;
   background-size: cover; }
 
 body {
@@ -18,7 +18,8 @@ body {
 .app {
   margin: 25px auto;
   background: white;
-  padding: 50px; }
+  padding: 50px;
+  border-radius: 10px; }
 
 .container {
   display: flex;
@@ -56,7 +57,7 @@ body {
   order: 0;
   flex: 0 1 auto;
   align-self: auto;
-  margin: 25px;
+  margin: 5px;
   max-width: 200px;
   min-width: 161px; }
 
@@ -104,7 +105,11 @@ body {
 .stickers {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; }
+  align-items: flex-end;
+  border: 1px solid #00bcd4;
+  padding: 0 15px 5px;
+  border-radius: 5px;
+  margin-top: 10px; }
 
 footer {
   margin: 25px 0 15px 50px; }
@@ -119,7 +124,8 @@ h2, h3, label {
 
 h3 {
   font-size: 1.2em;
-  margin: 15px 0; }
+  margin: 15px 0 0;
+  text-transform: uppercase; }
 
 .title {
   font-size: 5em; }
@@ -130,14 +136,14 @@ h3 {
 
 .main-title {
   font-family: 'Anton', sans-serif;
-  font-size: 2.3em;
+  font-size: 4em;
   margin: 0;
   text-align: center; }
 
 .main-subtitle {
   font-family: 'Pragati Narrow', sans-serif;
-  font-size: 1.3em;
-  margin: 0 0 20px;
+  font-size: 2em;
+  margin: 0;
   text-align: center; }
 
 .stickers-earned {
@@ -159,12 +165,12 @@ input {
 .goal-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-top: 10px;
   width: 350px; }
 
 .goal-box {
   display: flex;
-  border: 1px solid grey;
+  border: 1px solid #00bcd4;
   margin: 0;
   padding: 10px;
   border-radius: 5px;
@@ -212,16 +218,10 @@ a {
   color: #00bcd4; }
 
 hr {
-  background-color: #104B1E;
+  background-color: #00bcd4;
   border: 0;
   height: 1px;
   width: 99%; }
-
-button {
-  color: white; }
-
-button a {
-  color: white; }
 
 .hide-saved-stickers-button {
   margin-bottom: 3px; }
@@ -244,7 +244,7 @@ button a {
 .quotes {
   font-style: italic;
   text-align: center;
-  margin: 0 50px 3px;
+  margin: 3px 50px 0;
   max-width: 900px; }
 
 .tagline {

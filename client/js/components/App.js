@@ -22,8 +22,8 @@ class App extends React.Component {
                     <section className="main">
                         <p className="main-title">Sixty-Six Days</p>
                         <p className="main-subtitle">Set goals, stick to them.</p>
-                        <Quote />
                         <hr />
+                        <Quote />
                     </section>
 
                     <Input />

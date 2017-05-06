@@ -4,7 +4,7 @@
 
 html {
     height: 100%;
-    background:url(http://socalpain.com/wp-content/uploads/2014/08/BenefitsofZenSandGarden.jpg) no-repeat center center fixed;
+    background:url(https://s3.us-east-2.amazonaws.com/trig010/zen-garden.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -20,9 +20,9 @@ body {
 
 .app {
     margin: 25px auto;
-    // max-width: 1000px;
     background: white;
     padding: 50px;
+    border-radius: 10px;
 }
 
 .container {
@@ -66,7 +66,7 @@ body {
     order: 0;
     flex: 0 1 auto;
     align-self: auto;
-    margin: 25px;
+    margin: 5px;
     max-width: 200px;
     min-width: 161px;
 }
@@ -124,6 +124,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    border: 1px solid rgb(0, 188, 212);
+    padding: 0 15px 5px;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 footer {
@@ -142,7 +146,8 @@ h2, h3, label {
 
 h3 {
     font-size: 1.2em;
-    margin: 15px 0;
+    margin: 15px 0 0;
+    text-transform: uppercase;
 }
 
 .title {
@@ -156,15 +161,15 @@ h3 {
 
 .main-title {
     font-family: 'Anton', sans-serif;
-    font-size: 2.3em;
+    font-size: 4em;
     margin: 0;
     text-align: center;
 }
 
 .main-subtitle {
     font-family: 'Pragati Narrow', sans-serif;
-    font-size: 1.3em;
-    margin: 0 0 20px;
+    font-size: 2em;
+    margin: 0;
     text-align: center;
 }
 
@@ -192,13 +197,13 @@ input {
 .goal-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-top: 10px;
     width: 350px;
 }
 
 .goal-box {
     display: flex;
-    border: 1px solid grey;
+    border: 1px solid rgb(0, 188, 212);
     margin: 0;
     padding: 10px;
     border-radius: 5px;
@@ -257,20 +262,10 @@ a {
 }
 
 hr {
-    background-color: #104B1E;
+    background-color: rgb(0, 188, 212);
     border: 0;
     height: 1px;
     width: 99%;
-}
-
-button {
-    color: white;
-    // font-family: 'Pragati Narrow', sans-serif;
-}
-
-button a {
-    color: white;
-    // font-family: 'Pragati Narrow', sans-serif;
 }
 
 .hide-saved-stickers-button {
@@ -299,7 +294,7 @@ button a {
 .quotes {
     font-style: italic;
     text-align: center;
-    margin: 0 50px 3px;
+    margin: 3px 50px 0;
     max-width: 900px;
 }
 
