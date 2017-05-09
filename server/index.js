@@ -11,7 +11,7 @@ app.use(jsonParser);
 
 const {User} = require('../models/user');
 import Goal from '../models/goal';
-
+ 
 
 // const cookieParser = require('cookie-parser');
 const passport = require('passport'),

@@ -230,6 +230,12 @@ hr {
   display: flex;
   margin: 0 auto; }
 
+button {
+  color: white; }
+
+button div > a {
+  color: white; }
+
 .enter {
   margin: 15px 0 0; }
 
